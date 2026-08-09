@@ -188,8 +188,10 @@
     color: var(--color-manga-yellow);
   }
 
-  .hover-jitter:hover {
-    animation: glitch-jitter 0.15s linear infinite;
+  @media (hover: hover) and (pointer: fine) {
+    .hover-jitter:hover {
+      animation: glitch-jitter 0.15s linear infinite;
+    }
   }
 
   .sticker {
