@@ -11,18 +11,7 @@ const links = [
 function scrollToHash(hash: string) {
   const el = document.querySelector(hash);
   if (!(el instanceof HTMLElement)) return;
-
-  const lenis = (
-    window as Window & {
-      __lenis?: { scrollTo: (t: HTMLElement, o?: object) => void };
-    }
-  ).__lenis;
-
-  if (lenis) {
-    lenis.scrollTo(el, { offset: -16 });
-  } else {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 export function Nav() {

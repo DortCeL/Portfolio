@@ -180,7 +180,6 @@ function ProjectsRail() {
       <div
         ref={railRef}
         className="projects-rail"
-        data-lenis-prevent
         aria-label="Project carousel"
       >
         {projects.map((project, i) => (

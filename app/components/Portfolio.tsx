@@ -6,11 +6,8 @@ import { Hero } from "./Hero";
 import { Nav } from "./Nav";
 import { Stacks } from "./Stacks";
 import { Work } from "./Work";
-import { useSmoothScroll } from "../hooks/useSmoothScroll";
 
 export function Portfolio() {
-  useSmoothScroll();
-
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-manga-black text-manga-paper selection:bg-manga-red selection:text-white">
       <CustomCursor />
