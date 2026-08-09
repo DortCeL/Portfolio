@@ -17,7 +17,6 @@ export function Footer() {
   const marquee = [
     "Portfolio Complete",
     "Mission passed! RESPECT++",
-    "Now you know me!",
     "Time to hire me :)",
   ];
 
@@ -58,21 +57,45 @@ export function Footer() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-              className="border-2 border-manga-black bg-manga-black px-4 py-2 text-[10px] font-black tracking-widest text-white uppercase shadow-[4px_4px_0_#0c0c0d] hover:bg-manga-charcoal"
-            >
-              GitHub
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              className="border-2 border-manga-black bg-manga-red px-4 py-2 text-[10px] font-black tracking-widest text-white uppercase shadow-[4px_4px_0_#0c0c0d]"
-            >
-              Email
-            </a>
+            {(
+              [
+                {
+                  label: "GitHub",
+                  href: profile.github,
+                  tone: "bg-manga-black text-white hover:bg-manga-charcoal",
+                },
+                {
+                  label: "LinkedIn",
+                  href: profile.linkedin,
+                  tone: "bg-white text-manga-black hover:bg-manga-yellow",
+                },
+                {
+                  label: "Facebook",
+                  href: profile.facebook,
+                  tone: "bg-white text-manga-black hover:bg-manga-yellow",
+                },
+                {
+                  label: "YouTube",
+                  href: profile.youtube,
+                  tone: "bg-manga-red text-white hover:bg-manga-orange",
+                },
+              ] as const
+            ).map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className={`border-2 border-manga-black px-4 py-2 text-[10px] font-black tracking-widest uppercase shadow-[4px_4px_0_#0c0c0d] transition ${link.tone}`}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
+          <p className="mx-auto mt-4 max-w-sm font-mono text-[10px] leading-relaxed tracking-wide text-manga-black/50">
+            // YouTube warning: I also edit gaming montages. No, I will not
+            apologize for the kills {":)"}
+          </p>
         </div>
       </div>
 

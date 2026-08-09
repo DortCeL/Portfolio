@@ -7,7 +7,10 @@ export const profile = {
   role: "Aspiring Software Engineer",
   tagline: "Welcome to my portfolio",
   email: "exh.alif.47@gmail.com",
-  github: "https://github.com/DortCeL",
+  github: "https://github.com/DortCeL/",
+  facebook: "https://www.facebook.com/guywitha4060waduheccc/",
+  linkedin: "https://www.linkedin.com/in/aleph09/",
+  youtube: "https://www.youtube.com/@dortcel5550",
   location: "Dhaka, Bangladesh",
   education: {
     degree: "B.Sc. in Computer Science & Engineering",
@@ -44,6 +47,7 @@ export const profile = {
     "Tailwind CSS",
     "Unity",
     "C#",
+    "Git"
   ],
   tools: [
     "Git",
