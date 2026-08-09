@@ -3,19 +3,12 @@ import { Portfolio } from "../components/Portfolio";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Ismail AliF — Software Engineer" },
+    { title: "Ismail AliF — Final-year CSE student · Full-stack aspiring engineer" },
     {
       name: "description",
       content:
-        "Portfolio of Ismail AliF — aspiring software engineer. React, Laravel, Python, C++. Final semester CSE at AUST.",
+        "Final-semester Computer Science student in Dhaka. Portfolio of Ismail AliF — React, Laravel, Python, C++.",
     },
-    { property: "og:title", content: "Ismail AliF — Software Engineer" },
-    {
-      property: "og:description",
-      content:
-        "Building thoughtful software — from social platforms to quiet tools that just work.",
-    },
-    { property: "og:type", content: "website" },
   ];
 }
 

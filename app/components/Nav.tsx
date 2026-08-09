@@ -1,58 +1,45 @@
-import { useEffect, useState } from "react";
 import { profile } from "../data/portfolio";
 
 const links = [
+  { href: "#flagship", label: "Gamebook" },
   { href: "#work", label: "Work" },
   { href: "#about", label: "About" },
+  { href: "#stack", label: "Stack" },
   { href: "#contact", label: "Contact" },
 ];
 
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "nav-glass py-3" : "bg-transparent py-5"
-      }`}
-    >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="fixed inset-x-0 top-3 z-50 flex justify-center px-3">
+      <nav className="glass-nav relative flex h-14 w-full max-w-3xl items-center justify-between gap-2 rounded-full px-2 sm:px-3">
         <a
           href="#top"
-          className="font-display text-lg tracking-tight text-ink sm:text-xl"
-          style={{ fontWeight: 700 }}
+          className="ml-2 flex shrink-0 cursor-pointer items-baseline gap-1.5 text-sm font-semibold tracking-tight"
+          style={{ color: "var(--color-1)" }}
         >
-          {profile.firstName}
-          <span className="text-water-deep">.</span>
-          {profile.lastName}
+          <span>{profile.firstName}</span>
+          <span className="font-normal" style={{ color: "var(--text-muted)" }}>
+            {profile.lastName}
+          </span>
         </a>
 
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+        <ul className="hidden items-center sm:flex">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/70 transition hover:text-water-deep"
-            >
-              {l.label}
-            </a>
+            <li key={l.href}>
+              <a
+                href={l.href}
+                className="nav-link block rounded-full px-3.5 py-1.5 text-sm transition-colors duration-200"
+              >
+                {l.label}
+              </a>
+            </li>
           ))}
-        </nav>
+        </ul>
 
-        <a
-          href={`mailto:${profile.email}`}
-          className="font-mono text-[11px] uppercase tracking-[0.16em] text-water-deep transition hover:text-ink"
-        >
-          Hello
+        <a href={`mailto:${profile.email}`} className="btn-ghost h-9 px-4 text-xs">
+          Contact
         </a>
-      </div>
+      </nav>
     </header>
   );
 }

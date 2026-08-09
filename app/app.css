@@ -2,26 +2,32 @@
 @import "lenis/dist/lenis.css";
 
 @theme {
-  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
 
-  --color-ink: #0e1a22;
-  --color-mist: #d8ece8;
-  --color-foam: #f4fffc;
-  --color-spray: #a8d4cc;
-  --color-water: #3aa8b5;
-  --color-water-deep: #1a6f7c;
-  --color-water-bright: #7ee0ea;
-  --color-moss: #3d7a5f;
-  --color-moss-light: #6fad8a;
-  --color-rock: #3a4a55;
-  --color-rock-light: #5c6f7c;
-  --color-sky-top: #b8d4e8;
-  --color-sky-mid: #9ec9c4;
-  --color-sky-low: #7aada8;
-  --color-peak: #2a3d4a;
-  --color-copper: #c45c2a;
+:root {
+  --color-1: oklch(0.2 0.003 255);
+  --color-2: oklch(0.34 0.005 255);
+  --text-muted: oklch(0.465 0.007 255);
+  --background: oklch(0.985 0.003 255);
+  --foreground: oklch(0.2 0.003 255);
+  --primary: oklch(0.5 0.155 248);
+  --accent: oklch(0.5 0.155 248);
+  --accent-text: oklch(0.45 0.155 248);
+  --ring: oklch(0.55 0.155 248);
+  --glass-border: oklch(0.2 0.003 255 / 0.09);
+  --glass-border-hover: oklch(0.55 0.155 248 / 0.35);
+  --glass-bg: oklch(1 0 0 / 0.8);
+  --glass-bg-strong: oklch(1 0 0 / 0.94);
+  --orb-1: oklch(0.65 0.155 248 / 0.14);
+  --orb-2: oklch(0.72 0.155 248 / 0.1);
+  --orb-3: oklch(0.58 0.155 248 / 0.12);
+  --btn-grad-start: oklch(0.42 0.155 248);
+  --btn-grad-mid: oklch(0.46 0.155 248);
+  --btn-grad-end: oklch(0.5 0.155 248);
+  --btn-shadow: oklch(0.5 0.155 248 / 0.35);
+  --success: oklch(0.65 0.16 145);
+  --soft-fill: oklch(0.6 0.155 248 / 0.07);
 }
 
 @layer base {
@@ -35,14 +41,13 @@
   body {
     @apply antialiased;
     font-family: var(--font-sans);
-    background: #0a151c;
-    color: var(--color-ink);
+    background: var(--background);
+    color: var(--foreground);
     overflow-x: hidden;
   }
 
   ::selection {
-    background: color-mix(in oklab, var(--color-water) 45%, white);
-    color: var(--color-ink);
+    background: oklch(0.5 0.155 248 / 0.25);
   }
 
   a {
@@ -57,303 +62,161 @@
 }
 
 @layer utilities {
-  .font-display {
-    font-family: var(--font-display);
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
 
-  .font-mono {
-    font-family: var(--font-mono);
+  .section-x {
+    @apply px-0;
+  }
+
+  .section-y {
+    @apply py-14 sm:py-24;
   }
 
   .text-balance {
     text-wrap: balance;
   }
 
-  /* ——— Sky & world ——— */
-  .world-sky {
+  .text-accent {
+    color: var(--accent-text);
+  }
+
+  .glass {
     background: linear-gradient(
-      180deg,
-      #c5dff0 0%,
-      #a8d0d4 18%,
-      #7eb8b0 42%,
-      #4a8a82 68%,
-      #1e3d45 88%,
-      #0a151c 100%
+      165deg,
+      oklch(1 0 0 / 0.86),
+      oklch(1 0 0 / 0.66)
     );
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 18px 50px oklch(0.2 0.003 255 / 0.08);
+    backdrop-filter: blur(18px) saturate(1.2);
   }
 
-  /* ——— Waterfall core ——— */
-  .waterfall-core {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(126, 224, 234, 0.9) 8%,
-        rgba(58, 168, 181, 0.85) 25%,
-        rgba(26, 111, 124, 0.9) 55%,
-        rgba(58, 168, 181, 0.88) 75%,
-        rgba(168, 212, 204, 0.7) 92%,
-        rgba(244, 255, 252, 0.5) 100%
-      );
-    filter: blur(0.3px);
-    box-shadow:
-      0 0 40px rgba(126, 224, 234, 0.55),
-      0 0 80px rgba(58, 168, 181, 0.35),
-      inset 0 0 30px rgba(255, 255, 255, 0.35);
-  }
-
-  .waterfall-flow {
-    background-image: repeating-linear-gradient(
-      180deg,
-      transparent 0px,
-      rgba(255, 255, 255, 0.55) 4px,
-      transparent 10px,
-      rgba(126, 224, 234, 0.4) 18px,
-      transparent 28px,
-      rgba(255, 255, 255, 0.35) 36px,
-      transparent 48px
-    );
-    background-size: 100% 120px;
-    animation: water-cascade 0.85s linear infinite;
-    mix-blend-mode: soft-light;
-    opacity: 0.85;
-  }
-
-  .waterfall-flow-fast {
-    background-image: repeating-linear-gradient(
-      182deg,
-      transparent 0px,
-      rgba(255, 255, 255, 0.7) 2px,
-      transparent 6px,
-      rgba(174, 240, 245, 0.5) 12px,
-      transparent 20px
-    );
-    background-size: 100% 60px;
-    animation: water-cascade 0.45s linear infinite;
-    mix-blend-mode: overlay;
-    opacity: 0.65;
-  }
-
-  .waterfall-edge-l,
-  .waterfall-edge-r {
+  .glass-strong {
     background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.5),
-      rgba(126, 224, 234, 0.25),
-      rgba(255, 255, 255, 0.4)
+      165deg,
+      oklch(1 0 0 / 0.94),
+      oklch(1 0 0 / 0.78)
     );
-    filter: blur(6px);
-    animation: edge-shimmer 2.4s ease-in-out infinite alternate;
+    border: 1px solid oklch(0.2 0.003 255 / 0.12);
+    box-shadow: 0 22px 55px oklch(0.2 0.003 255 / 0.1);
+    backdrop-filter: blur(22px) saturate(1.25);
   }
 
-  .waterfall-edge-r {
-    animation-delay: -1.2s;
-  }
-
-  .waterfall-mist {
-    background: radial-gradient(
-      ellipse at center,
-      rgba(244, 255, 252, 0.55) 0%,
-      rgba(168, 212, 204, 0.2) 40%,
-      transparent 70%
-    );
-    filter: blur(20px);
-    animation: mist-pulse 4s ease-in-out infinite;
-  }
-
-  .waterfall-pool {
-    background: radial-gradient(
-      ellipse at center,
-      rgba(126, 224, 234, 0.55) 0%,
-      rgba(58, 168, 181, 0.35) 35%,
-      rgba(26, 111, 124, 0.15) 60%,
-      transparent 75%
-    );
-    filter: blur(8px);
-    animation: pool-ripple 3.5s ease-in-out infinite;
-  }
-
-  @keyframes water-cascade {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: 0 120px;
-    }
-  }
-
-  @keyframes edge-shimmer {
-    from {
-      opacity: 0.45;
-      transform: scaleX(0.85);
-    }
-    to {
-      opacity: 0.9;
-      transform: scaleX(1.15);
-    }
-  }
-
-  @keyframes mist-pulse {
-    0%,
-    100% {
-      opacity: 0.5;
-      transform: translateY(0) scale(1);
-    }
-    50% {
-      opacity: 0.85;
-      transform: translateY(-12px) scale(1.08);
-    }
-  }
-
-  @keyframes pool-ripple {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 0.7;
-    }
-    50% {
-      transform: scale(1.08);
-      opacity: 1;
-    }
-  }
-
-  /* ——— Mountain layers ——— */
-  .mountain-far {
-    animation: mountain-breathe 12s ease-in-out infinite alternate;
-  }
-
-  @keyframes mountain-breathe {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-8px);
-    }
-  }
-
-  /* ——— Ledge cards ——— */
-  .ledge-card {
+  .glass-nav {
     background: linear-gradient(
-      145deg,
-      rgba(244, 255, 252, 0.92) 0%,
-      rgba(216, 236, 232, 0.88) 50%,
-      rgba(200, 224, 220, 0.9) 100%
+      165deg,
+      oklch(1 0 0 / 0.82),
+      oklch(1 0 0 / 0.64)
     );
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    box-shadow:
-      0 20px 50px rgba(10, 21, 28, 0.35),
-      0 4px 12px rgba(26, 111, 124, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(16px) saturate(1.3);
-    transition:
-      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 0.55s ease;
+    border: 1px solid oklch(0.2 0.003 255 / 0.1);
+    box-shadow: 0 12px 40px oklch(0.2 0.003 255 / 0.08);
+    backdrop-filter: blur(20px) saturate(1.3);
   }
 
-  .ledge-card:hover {
-    transform: translateY(-6px) scale(1.015);
-    box-shadow:
-      0 28px 60px rgba(10, 21, 28, 0.4),
-      0 0 40px rgba(58, 168, 181, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  .glass-pill {
+    @apply inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm;
+    background: oklch(1 0 0 / 0.72);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    backdrop-filter: blur(12px);
   }
 
-  .ledge-rock {
-    background: linear-gradient(180deg, #5a6d78 0%, #3a4a55 40%, #2a3842 100%);
-    box-shadow:
-      0 12px 30px rgba(0, 0, 0, 0.35),
-      inset 0 2px 0 rgba(255, 255, 255, 0.12);
+  .status-dot {
+    @apply h-2 w-2 shrink-0 rounded-full;
+    background: var(--success);
+    box-shadow: 0 0 0 3px oklch(0.65 0.16 145 / 0.2);
   }
 
-  /* ——— Reveal ——— */
+  .btn-primary {
+    @apply relative inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-full px-7 text-sm font-semibold text-white transition-all duration-300;
+    background: linear-gradient(
+      135deg,
+      var(--btn-grad-start),
+      var(--btn-grad-mid),
+      var(--btn-grad-end)
+    );
+    box-shadow: 0 10px 28px var(--btn-shadow);
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    @apply inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-full border px-7 text-sm font-semibold transition-all duration-300;
+    border-color: var(--glass-border);
+    background: oklch(1 0 0 / 0.45);
+    color: var(--color-1);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--glass-border-hover);
+  }
+
+  .nav-link {
+    color: var(--text-muted);
+  }
+
+  .nav-link:hover {
+    color: var(--color-1);
+  }
+
   .reveal {
     opacity: 0;
-    transform: translateY(40px) scale(0.97);
+    transform: translateY(18px);
     transition:
-      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .reveal.is-in {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 
-  .reveal-left {
-    opacity: 0;
-    transform: translateX(-60px) rotate(-2deg);
+  .card-hover {
     transition:
-      opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s ease,
+      box-shadow 0.35s ease;
   }
 
-  .reveal-left.is-in {
-    opacity: 1;
-    transform: translateX(0) rotate(0);
+  .card-hover:hover {
+    transform: translateY(-3px);
+    border-color: var(--glass-border-hover);
+    box-shadow: 0 24px 55px oklch(0.2 0.003 255 / 0.12);
   }
 
-  .reveal-right {
-    opacity: 0;
-    transform: translateX(60px) rotate(2deg);
-    transition:
-      opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 1s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .reveal-right.is-in {
-    opacity: 1;
-    transform: translateX(0) rotate(0);
-  }
-
-  .portrait-frame {
-    box-shadow:
-      0 25px 60px rgba(10, 21, 28, 0.45),
-      0 0 0 4px rgba(244, 255, 252, 0.35),
-      0 0 50px rgba(58, 168, 181, 0.3);
-  }
-
-  .nav-glass {
-    backdrop-filter: blur(18px) saturate(1.4);
-    background: rgba(216, 236, 232, 0.55);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  }
-
-  .spray-dot {
-    animation: spray-fall linear infinite;
-  }
-
-  @keyframes spray-fall {
-    0% {
-      transform: translateY(-10vh) scale(1);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.8;
-    }
-    90% {
-      opacity: 0.4;
-    }
+  @keyframes orb1 {
+    0%,
     100% {
-      transform: translateY(110vh) scale(0.4);
-      opacity: 0;
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(60px, -40px) scale(1.15);
+    }
+  }
+
+  @keyframes orb2 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-80px, 60px) scale(1.2);
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .waterfall-flow,
-    .waterfall-flow-fast,
-    .waterfall-edge-l,
-    .waterfall-edge-r,
-    .waterfall-mist,
-    .waterfall-pool,
-    .mountain-far,
-    .spray-dot,
     .reveal,
-    .reveal-left,
-    .reveal-right,
-    .ledge-card {
-      animation: none !important;
+    .card-hover,
+    .btn-primary {
       transition: none !important;
+      animation: none !important;
       opacity: 1 !important;
       transform: none !important;
     }

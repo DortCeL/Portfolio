@@ -19,7 +19,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;500;600&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&display=swap",
   },
 ];
 
@@ -29,6 +29,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#f9f9fc" />
         <Meta />
         <Links />
       </head>
@@ -62,13 +63,13 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="bg-ink px-5 py-24 text-foam">
-      <h1 className="font-display text-5xl" style={{ fontWeight: 750 }}>
-        {message}
-      </h1>
-      <p className="mt-4 text-mist">{details}</p>
+    <main className="px-5 py-24" style={{ background: "var(--background)" }}>
+      <h1 className="text-4xl font-semibold">{message}</h1>
+      <p className="mt-4" style={{ color: "var(--text-muted)" }}>
+        {details}
+      </p>
       {stack && (
-        <pre className="mt-6 w-full overflow-x-auto rounded-xl bg-rock/50 p-4 text-sm">
+        <pre className="glass mt-6 overflow-x-auto rounded-2xl p-4 text-sm">
           <code>{stack}</code>
         </pre>
       )}
