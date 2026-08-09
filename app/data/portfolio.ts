@@ -12,10 +12,23 @@ export const profile = {
   education: {
     degree: "B.Sc. in Computer Science & Engineering",
     school: "Ahsanullah University of Science & Technology",
+    schoolShort: "AUST",
     period: "2022 — Present",
     status: "Final semester",
     cgpa: "3.52",
   },
+  leetcode: {
+    url: "https://leetcode.com/u/DortCeL/",
+    solved: 86,
+    easy: 65,
+    medium: 20,
+    hard: 1,
+  },
+  tenure: [
+    { years: "5+", label: "Web projects" },
+    { years: "3+", label: "React & Node" },
+    { years: "2", label: "Python" },
+  ],
   skills: [
     "React",
     "TypeScript",

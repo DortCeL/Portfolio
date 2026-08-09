@@ -24,7 +24,7 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      className="halftone-bg relative flex min-h-[70vh] w-full flex-col justify-between overflow-hidden border-t-[3px] border-manga-black bg-manga-paper px-4 py-12 sm:px-6"
+      className="halftone-bg relative w-full overflow-hidden border-t-[3px] border-manga-black bg-manga-paper px-4 py-12 sm:px-6 sm:py-16"
     >
       <div className="relative z-[2] mx-auto flex w-full max-w-5xl flex-col gap-10">
         <div className="flex flex-wrap items-start justify-between gap-4">
@@ -32,9 +32,6 @@ export function Footer() {
             <p className="font-mono text-[10px] font-bold tracking-widest text-manga-black/50 uppercase">
               Ismail ALIF
             </p>
-            {/* <p className="mt-1 font-mono text-[10px] font-bold tracking-widest text-manga-orange uppercase">
-              // Signing off
-            </p> */}
           </div>
           <div className="border-2 border-manga-black bg-manga-yellow px-3 py-1 font-mono text-black text-[10px] font-bold tracking-wider uppercase shadow-[3px_3px_0_#0c0c0d]">
             Signing off
@@ -79,7 +76,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative z-[2] mt-12">
+      <div className="relative z-[2] mt-10">
         <div className="marquee">
           <div className="marquee-track">
             {[...marquee, ...marquee, ...marquee, ...marquee].map((t, i) => (
