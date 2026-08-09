@@ -15,10 +15,10 @@ export function Footer() {
   };
 
   const marquee = [
-    "Mission Log Complete",
-    "System Engaged",
-    "Class: Software Engineer",
-    "To Be Continued",
+    "Portfolio Complete",
+    "Mission passed! RESPECT++",
+    "Now you know me!",
+    "Time to hire me :)",
   ];
 
   return (
@@ -30,14 +30,14 @@ export function Footer() {
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="font-mono text-[10px] font-bold tracking-widest text-manga-black/50 uppercase">
-              Ismail Special #001
+              Ismail ALIF
             </p>
-            <p className="mt-1 font-mono text-[10px] font-bold tracking-widest text-manga-orange uppercase">
-              // Issue 01 // Vol. 2026
-            </p>
+            {/* <p className="mt-1 font-mono text-[10px] font-bold tracking-widest text-manga-orange uppercase">
+              // Signing off
+            </p> */}
           </div>
-          <div className="border-2 border-manga-black bg-manga-yellow px-3 py-1 font-mono text-[10px] font-bold tracking-wider uppercase shadow-[3px_3px_0_#0c0c0d]">
-            Approved for all viewers
+          <div className="border-2 border-manga-black bg-manga-yellow px-3 py-1 font-mono text-black text-[10px] font-bold tracking-wider uppercase shadow-[3px_3px_0_#0c0c0d]">
+            Signing off
           </div>
         </div>
 
@@ -52,7 +52,7 @@ export function Footer() {
           <button
             type="button"
             onClick={copyEmail}
-            className="hover-jitter mt-8 inline-flex items-center gap-3 border-[3px] border-manga-black bg-white px-5 py-3 font-mono text-xs font-bold tracking-wider uppercase shadow-[6px_6px_0_#e11d48] transition hover:bg-manga-yellow"
+            className="hover-jitter mt-8 inline-flex items-center gap-3 border-[3px] border-manga-black bg-white px-5 py-3 font-mono text-black text-xs font-bold tracking-wider lowercase shadow-[6px_6px_0_#e11d48] transition hover:bg-manga-yellow"
           >
             {copied ? "Copied!" : profile.email}
           </button>
@@ -89,9 +89,8 @@ export function Footer() {
             ))}
           </div>
         </div>
-        <p className="mt-6 text-center font-mono text-[10px] tracking-wider text-manga-black/45 uppercase">
-          © {new Date().getFullYear()} {profile.name}. Built with React Router +
-          Tailwind.
+        <p className="mt-6 text-center font-mono text-[10px] tracking-wider text-manga-black/70 uppercase">
+          © {new Date().getFullYear()} Ismail ALIF. Built with passion AND ❤️
         </p>
       </div>
     </footer>

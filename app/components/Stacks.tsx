@@ -7,7 +7,7 @@ export function Stacks() {
       className="graph-grid relative w-full scroll-mt-24 bg-manga-paper-dark px-4 py-16 sm:px-6 sm:py-20"
     >
       <div className="relative z-[2] mx-auto max-w-5xl">
-        <p className="section-label">// Section 05: Loadout (Stacks)</p>
+        <p className="section-label">// My Loadout (Stacks)</p>
         <h2 className="mt-4 text-3xl font-black tracking-tight text-manga-black italic sm:text-4xl">
           What I Build With
         </h2>

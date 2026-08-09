@@ -75,7 +75,7 @@ export function Nav() {
           href={`mailto:${profile.email}`}
           className="border border-white bg-manga-red px-3 py-2 text-[10px] font-black tracking-widest text-white shadow-[4px_4px_0_#000]"
         >
-          INTEL!
+          CONTACT ME
         </a>
       </div>
 

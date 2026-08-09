@@ -19,9 +19,11 @@ export const profile = {
   skills: [
     "React",
     "TypeScript",
+    "Next.js",
     "Laravel",
     "Python",
     "C++",
+    "Express",
     "Node.js",
     "PostgreSQL",
     "MongoDB",
@@ -37,6 +39,11 @@ export const profile = {
     "Postman",
     "Vercel",
     "Docker",
+  ],
+  traits: [
+    { label: "Easy to work with", note: "Clear, responsive, no drama" },
+    { label: "Fluent in English", note: "Comfortable in async & meetings" },
+    { label: "I learn fast", note: "Pick up stacks and ship quickly" },
   ],
 };
 

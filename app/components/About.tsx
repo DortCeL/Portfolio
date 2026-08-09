@@ -8,7 +8,7 @@ export function About() {
     >
       <div className="relative z-[2] mx-auto grid max-w-5xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div className="relative mx-auto w-full max-w-xs lg:mx-0">
-          <p className="section-label mb-4">// Section 04: The Origin Story</p>
+          <p className="section-label mb-4">// This is me </p>
 
           <div className="relative">
             <span className="absolute -top-3 left-3 z-10 border border-manga-black bg-manga-green px-2 py-1 font-mono text-[10px] font-bold tracking-wider text-white uppercase">
@@ -54,41 +54,56 @@ export function About() {
             Origin Story
           </h2>
           <p className="mt-3 font-mono text-xs font-bold tracking-wider text-manga-orange uppercase">
-            // Build Metrics // Computer Science Brutalism
+            // A bit about me
           </p>
 
           <div className="mt-8 space-y-4 text-base leading-relaxed text-manga-black/80 sm:text-lg">
             <p>
-              I&apos;m {profile.fullName} — final-semester CSE student at{" "}
-              {profile.education.school}. I got into code because I kept wanting
-              tools that didn&apos;t exist yet, so I started building them.
+              Hey, I'm Ismail Hossain. Call me AliF. I live in Mirpur, Dhaka.
             </p>
             <p>
-              From full-stack social apps like Gamebook to privacy-first
-              automation and family-business sites, I like shipping things
-              people can actually open and use.
+              I genuinely just like building things. Doesn't really matter what-
+              a script, a small app, whatever. Lately i've been working on my
+              thesis: stance detection on Bangla social media text using
+              transformer models. Basically trying to get a model to understand
+              what people actually mean when they're going back and forth in the
+              comments. But I'm also working on a few side projects that are
+              fun.
             </p>
             <p>
-              Based in {profile.location}. Open to internships and junior roles
-              where I can learn fast, ask good questions, and finish what I
-              start. GGs!
+              I'm still early in this journey and learning fast, and I'm
+              currently looking for internships or a junior software engineer
+              role : somewhere I can keep building and actually grow.
             </p>
+
+            <p>Fluent in English and Bangla, and I can speak Hindi too.</p>
           </div>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <div className="border-2 border-manga-black bg-white p-4 shadow-[4px_4px_0_#0c0c0d]">
-              <p className="section-label">// Skillsets</p>
-              <p className="mt-3 font-mono text-[11px] leading-relaxed font-bold tracking-wide text-manga-black uppercase">
-                Full Stack / React / TypeScript / Laravel / Node / Postgres /
-                Product Thinking
-              </p>
-            </div>
-            <div className="border-2 border-manga-black bg-white p-4 shadow-[4px_4px_0_#e11d48]">
-              <p className="section-label">// Tools</p>
-              <p className="mt-3 font-mono text-[11px] leading-relaxed font-bold tracking-wide text-manga-black uppercase">
-                {profile.tools.join(" / ")}
-              </p>
-            </div>
+          <div className="mt-10">
+            <p className="section-label">// Working with me</p>
+            <ul className="mt-4 grid gap-4 sm:grid-cols-3">
+              {profile.traits.map((trait, i) => {
+                const shadow =
+                  i === 1
+                    ? "shadow-[4px_4px_0_#e11d48]"
+                    : i === 2
+                      ? "shadow-[4px_4px_0_#16a34a]"
+                      : "shadow-[4px_4px_0_#0c0c0d]";
+                return (
+                  <li
+                    key={trait.label}
+                    className={`border-2 border-manga-black bg-white p-4 ${shadow}`}
+                  >
+                    <p className="font-mono text-[11px] font-black tracking-wide text-manga-black uppercase">
+                      {trait.label}
+                    </p>
+                    <p className="mt-2 font-mono text-[10px] leading-relaxed tracking-wide text-manga-black/60">
+                      {trait.note}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </div>
