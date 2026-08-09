@@ -1,9 +1,11 @@
 export const profile = {
-  name: "Ismail AliF",
+  name: "Ismail Hossain",
   firstName: "Ismail",
-  lastName: "AliF",
+  lastName: "Hossain",
+  nickname: "AliF",
+  fullName: "Ismail Hossain AliF",
   role: "Aspiring Software Engineer",
-  tagline: "Building thoughtful software — from social platforms to quiet tools that just work.",
+  tagline: "Welcome to my portfolio",
   email: "exh.alif.47@gmail.com",
   github: "https://github.com/DortCeL",
   location: "Dhaka, Bangladesh",
@@ -28,6 +30,14 @@ export const profile = {
     "Unity",
     "C#",
   ],
+  tools: [
+    "Git",
+    "VS Code",
+    "Figma",
+    "Postman",
+    "Vercel",
+    "Docker",
+  ],
 };
 
 export type Project = {
@@ -36,10 +46,12 @@ export type Project = {
   subtitle: string;
   description: string;
   stack: string[];
+  tags: string[];
   github?: string;
   live?: string;
   status?: "live" | "wip" | "private";
   accent: string;
+  panel: string;
 };
 
 export const projects: Project[] = [
@@ -50,10 +62,12 @@ export const projects: Project[] = [
     description:
       "A MERN social network built for gamers — posts, comments, replies, friend management, and real-time chat. Next up: screenshots, reviews, and clip sharing.",
     stack: ["React", "Node.js", "Express", "MongoDB", "JWT"],
+    tags: ["Full Stack", "Realtime", "Social"],
     github: "https://github.com/DortCeL/Gamebook",
     live: "https://gamebook-henna.vercel.app",
     status: "live",
-    accent: "#2a6f6a",
+    accent: "#facc15",
+    panel: "#fef3c7",
   },
   {
     id: "02",
@@ -62,98 +76,72 @@ export const projects: Project[] = [
     description:
       "Collaborative expense management for friend groups on the road. Track shares, debts, and totals so nobody is left guessing who owes what.",
     stack: ["Laravel", "React", "TypeScript"],
+    tags: ["Laravel", "SPA", "Finance"],
     github: "https://github.com/DortCeL/TripSplit_LaravelReact",
     status: "wip",
-    accent: "#3d5a80",
+    accent: "#fb7185",
+    panel: "#ffe4e6",
   },
   {
     id: "03",
     title: "What If?",
     subtitle: "AI alternate timelines",
     description:
-      "A reflective Gemini-powered tool that imagines a world where something never existed — to reveal the value of what we take for granted. Evolving toward smarter prompt-driven products.",
+      "A reflective Gemini-powered tool that imagines a world where something never existed — to reveal the value of what we take for granted.",
     stack: ["React", "Express", "Gemini AI"],
+    tags: ["AI", "Product", "Experiment"],
     github: "https://github.com/DortCeL/what-if",
     live: "https://what-if-blond.vercel.app",
     status: "live",
-    accent: "#6b4c9a",
+    accent: "#a78bfa",
+    panel: "#ede9fe",
   },
   {
     id: "04",
     title: "ATH Printing",
     subtitle: "Family business, on the web",
     description:
-      "A React + Tailwind marketing site for AutoCAD Training Home — my father's printing & CAD training business. Location, services, and capabilities, crafted to convert visitors.",
+      "A React + Tailwind marketing site for AutoCAD Training Home — my father's printing & CAD training business. Location, services, and capabilities.",
     stack: ["React", "Tailwind CSS", "Vite"],
+    tags: ["Client Work", "Marketing", "Local Biz"],
     github: "https://github.com/DortCeL/ATH_Printing",
     live: "https://ath-printing.vercel.app",
     status: "live",
-    accent: "#b4532a",
+    accent: "#34d399",
+    panel: "#d1fae5",
   },
   {
     id: "05",
     title: "DriveBackup",
     subtitle: "Privacy-first folder backup",
     description:
-      "A lightweight Python console app that zips selected folders and uploads them to the user's own Google Drive. No third-party storage — your Drive, your data.",
+      "A lightweight Python console app that zips selected folders and uploads them to the user's own Google Drive. No third-party storage.",
     stack: ["Python", "Google Drive API"],
+    tags: ["Python", "Automation", "Privacy"],
     github: "https://github.com/DortCeL/DriveBackup",
     status: "live",
-    accent: "#1a5f4a",
+    accent: "#38bdf8",
+    panel: "#e0f2fe",
   },
   {
     id: "06",
     title: "BFS Visualizer",
     subtitle: "Pathfinding, made visible",
     description:
-      "Pick a start, an end, draw walls on a grid, and watch BFS find the shortest path — a vanilla JS visualizer for understanding algorithms by seeing them.",
+      "Pick a start, an end, draw walls on a grid, and watch BFS find the shortest path — understand algorithms by seeing them.",
     stack: ["HTML", "CSS", "JavaScript"],
+    tags: ["Algorithms", "Visual", "Teaching"],
     github: "https://github.com/DortCeL/BFS-visualizer",
     live: "https://bfs-visualizer-alif-op.vercel.app",
     status: "live",
-    accent: "#c45c2a",
-  },
-  {
-    id: "07",
-    title: "Vehicle Rental API",
-    subtitle: "PostgreSQL · Prisma · modular Node",
-    description:
-      "A vehicle rental backend built to deepen PostgreSQL, TypeScript, and Prisma skills — modular Node architecture with clean data modeling.",
-    stack: ["TypeScript", "Node.js", "PostgreSQL", "Prisma"],
-    github: "https://github.com/DortCeL/vehicle-rental-system-postgresql-erd",
-    status: "live",
-    accent: "#4a6fa5",
-  },
-  {
-    id: "08",
-    title: "Pookie Notes",
-    subtitle: "Cute browser notes",
-    description:
-      "A browser extension for quick notes and highlighting important links. Built with a deliberately playful UI — productivity with a wink.",
-    stack: ["JavaScript", "Browser Extension"],
-    github: "https://github.com/DortCeL/pookie_notes",
-    status: "wip",
-    accent: "#c45b7a",
-  },
-  {
-    id: "09",
-    title: "Unity 2D Adventure",
-    subtitle: "University game project",
-    description:
-      "A 2D action game in C# & Unity with three levels, two mini-bosses, and complex combat logic. Still being polished — but the systems are already fighting.",
-    stack: ["C#", "Unity"],
-    github: "https://github.com/DortCeL/unity-game-development",
-    status: "wip",
-    accent: "#5c4a3a",
-  },
-  {
-    id: "10",
-    title: "German Store POS",
-    subtitle: "Team · tax-compliant retail",
-    description:
-      "Point-of-sale system for a German store, built with four teammates and real German tax law constraints. Repo access pending — story coming soon.",
-    stack: ["Team project", "POS", "Tax compliance"],
-    status: "private",
-    accent: "#2c3e50",
+    accent: "#fb923c",
+    panel: "#ffedd5",
   },
 ];
+
+export const stickers = [
+  { id: "s1", label: "Full Stack", emoji: "🛠️", rot: -8, x: 8, y: 18, color: "#facc15" },
+  { id: "s2", label: "Ships Often", emoji: "🚀", rot: 6, x: 72, y: 16, color: "#ffffff" },
+  { id: "s3", label: "CSE Final Year", emoji: "🎓", rot: -4, x: 12, y: 68, color: "#fda4af" },
+  { id: "s4", label: "Problem Solver", emoji: "⚡", rot: 10, x: 70, y: 62, color: "#ffffff" },
+] as const;
