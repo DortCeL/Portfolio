@@ -1,9 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 
+type Burst = {
+  id: number;
+  x: number;
+  y: number;
+  rot: number;
+  scale: number;
+};
+
+let burstId = 0;
+
 export function CustomCursor() {
   const tipRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const [hovering, setHovering] = useState(false);
+  const [bursts, setBursts] = useState<Burst[]>([]);
+  const [motionOk, setMotionOk] = useState(true);
   const pos = useRef({ x: -100, y: -100 });
   const frame = useRef(0);
 
@@ -11,7 +23,10 @@ export function CustomCursor() {
     const fine = window.matchMedia("(pointer: fine)");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    const sync = () => setEnabled(fine.matches && !reduce.matches);
+    const sync = () => {
+      setEnabled(fine.matches && !reduce.matches);
+      setMotionOk(!reduce.matches);
+    };
     sync();
 
     fine.addEventListener("change", sync);
@@ -60,31 +75,75 @@ export function CustomCursor() {
     };
   }, [enabled]);
 
-  if (!enabled) return null;
+  useEffect(() => {
+    if (!motionOk) return;
+
+    const onPointerDown = (e: PointerEvent) => {
+      if (e.button !== 0 && e.pointerType === "mouse") return;
+
+      const id = ++burstId;
+      const burst: Burst = {
+        id,
+        x: e.clientX,
+        y: e.clientY,
+        rot: -18 + Math.random() * 36,
+        scale: 0.9 + Math.random() * 0.35,
+      };
+
+      setBursts((prev) => [...prev.slice(-8), burst]);
+      window.setTimeout(() => {
+        setBursts((prev) => prev.filter((b) => b.id !== id));
+      }, 420);
+    };
+
+    window.addEventListener("pointerdown", onPointerDown);
+    return () => window.removeEventListener("pointerdown", onPointerDown);
+  }, [motionOk]);
 
   return (
-    <div
-      ref={tipRef}
-      className={`comic-cursor-dot ${hovering ? "is-hover" : ""}`}
-      aria-hidden
-    >
-      <svg
-        className="comic-cursor-pointer"
-        viewBox="0 0 24 24"
-          width="28"
-        height="28"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.5 2.2 19.2 12.4l-6.1 1.4 3.4 7.3-2.5 1.2-3.5-7.4-4.8 4.7Z"
-          fill="var(--color-manga-yellow)"
-          stroke="#0c0c0d"
-          strokeWidth="2"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
-      </svg>
-    </div>
+    <>
+      {enabled && (
+        <div
+          ref={tipRef}
+          className={`comic-cursor-dot ${hovering ? "is-hover" : ""}`}
+          aria-hidden
+        >
+          <svg
+            className="comic-cursor-pointer"
+            viewBox="0 0 24 24"
+            width="28"
+            height="28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4.5 2.2 19.2 12.4l-6.1 1.4 3.4 7.3-2.5 1.2-3.5-7.4-4.8 4.7Z"
+              fill="var(--color-manga-yellow)"
+              stroke="#0c0c0d"
+              strokeWidth="2"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
+      )}
+
+      <div className="comic-pow-layer" aria-hidden>
+        {bursts.map((b) => (
+          <span
+            key={b.id}
+            className="comic-pow"
+            style={{
+              left: b.x,
+              top: b.y,
+              ["--pow-rot" as string]: `${b.rot}deg`,
+              ["--pow-scale" as string]: String(b.scale),
+            }}
+          >
+            POW!
+          </span>
+        ))}
+      </div>
+    </>
   );
 }
