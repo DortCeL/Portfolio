@@ -1,42 +1,28 @@
 import { About } from "./About";
+import { CustomCursor } from "./CustomCursor";
+import { Experience } from "./Experience";
+import { Footer } from "./Footer";
 import { Hero } from "./Hero";
 import { Nav } from "./Nav";
-import { ThemeProvider } from "./ThemeProvider";
+import { Stacks } from "./Stacks";
+import { Work } from "./Work";
 import { useSmoothScroll } from "../hooks/useSmoothScroll";
 
-function PortfolioInner() {
+export function Portfolio() {
   useSmoothScroll();
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen overflow-x-hidden bg-manga-black text-manga-paper selection:bg-manga-red selection:text-white">
+      <CustomCursor />
       <Nav />
-
       <main>
         <Hero />
+        <Work />
+        <Experience />
         <About />
-
-        {/* Temporary anchors for nav — more sections later */}
-        <div
-          id="work"
-          className="scroll-mt-28 bg-[#faf8f4] px-6 pb-16 text-center text-sm text-black/35"
-        >
-          #work — coming next
-        </div>
-        <div
-          id="stacks"
-          className="scroll-mt-28 bg-[#faf8f4] px-6 pb-24 text-center text-sm text-black/35"
-        >
-          #stacks — coming next
-        </div>
+        <Stacks />
       </main>
+      <Footer />
     </div>
-  );
-}
-
-export function Portfolio() {
-  return (
-    <ThemeProvider>
-      <PortfolioInner />
-    </ThemeProvider>
   );
 }
