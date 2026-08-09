@@ -142,7 +142,7 @@ export function Hero() {
           </p>
         </div>
 
-        <p className="mt-8 font-mono text-[14px] tracking-wider text-white/50 uppercase">
+        <p className="mt-8 font-mono text-[12px] tracking-wider text-white/50 uppercase">
           // Based in {profile.location}
           <span className="text-manga-yellow"> · Open to internships</span>
         </p>
