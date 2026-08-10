@@ -84,11 +84,11 @@ export const projects: Project[] = [
   {
     id: "01",
     title: "Gamebook",
-    subtitle: "Social platform for gamers",
+    subtitle: "Full-stack social network for gamers",
     description:
-      "A MERN social network built for gamers : posts, comments, replies, friend management, and real-time chat. Working on : screenshots, reviews, and clip sharing.",
+      "A MERN social platform where gamers can post, comment, manage friends, and chat in real time. Built with JWT auth and MongoDB. Screenshot sharing, reviews, and clip uploads are in progress.",
     stack: ["React", "Node.js", "Express", "MongoDB", "JWT"],
-    tags: ["React", "Node", "MongoDB", "Full Stack", "Websocket", "Social Media"],
+    tags: ["Full Stack", "React", "Node.js", "MongoDB", "WebSockets"],
     github: "https://github.com/DortCeL/Gamebook",
     live: "https://gamebook-henna.vercel.app",
     status: "IN PROGRESS",
@@ -99,11 +99,11 @@ export const projects: Project[] = [
   {
     id: "02",
     title: "TripSplit",
-    subtitle: "Shared travel expenses",
+    subtitle: "Group trip expense splitter",
     description:
-      "Collaborative expense management for friend groups on the road. Track shares, debts, and totals so nobody is left guessing who owes what.",
+      "A Laravel and React app for shared travel costs. Create a trip, invite members, log expenses, and see clear balances of who owes whom. Built for BDT with roles, settlements, and trip history.",
     stack: ["Laravel", "React", "TypeScript"],
-    tags: ["Laravel", "SPA", "Finance"],
+    tags: ["Laravel", "React", "TypeScript", "Full Stack"],
     github: "https://github.com/DortCeL/TripSplit_LaravelReact",
     live: "https://tripsplit-y7x6.onrender.com/",
     status: "Complete",
@@ -114,11 +114,11 @@ export const projects: Project[] = [
   {
     id: "03",
     title: "sketchy?",
-    subtitle: "Job post scam checker",
+    subtitle: "AI job-posting risk checker",
     description:
-      "Paste a job description and Gemini flags scam-like or shady signals — confidence, a short verdict, and any red flags. A quick second opinion before you apply.",
+      "Paste a job description and Gemini returns a sketchy-or-not verdict, confidence level, a short summary, and any red flags. Built with Next.js to help applicants spot shady listings before they apply.",
     stack: ["Next.js", "TypeScript", "Gemini AI"],
-    tags: ["AI", "Next.js", "Security"],
+    tags: ["Next.js", "TypeScript", "Gemini", "AI"],
     github: "https://github.com/DortCeL/sketchy",
     live: "https://sketchy-job.vercel.app/",
     status: "live",
@@ -129,11 +129,11 @@ export const projects: Project[] = [
   {
     id: "04",
     title: "ATH Printing",
-    subtitle: "Family business, on the web",
+    subtitle: "Business website for a CAD printing shop",
     description:
-      "A React + Tailwind marketing site for AutoCAD Training Home — my father's printing & CAD training business. Location, services, and capabilities.",
+      "A marketing site for AutoCAD Training Home, a Dhaka printing and CAD training business. Covers services, location, and company background. Built with React, Tailwind, and Vite for a real local client.",
     stack: ["React", "Tailwind CSS", "Vite"],
-    tags: ["Client Work", "Marketing", "Local Biz"],
+    tags: ["React", "Tailwind", "Client Work"],
     github: "https://github.com/DortCeL/ATH_Printing",
     live: "https://ath-printing.vercel.app",
     status: "live",
@@ -144,11 +144,11 @@ export const projects: Project[] = [
   {
     id: "05",
     title: "DriveBackup",
-    subtitle: "Privacy-first folder backup",
+    subtitle: "Automated folder backup to Google Drive",
     description:
-      "A lightweight Python console app that zips selected folders and uploads them to the user's own Google Drive. No third-party storage.",
+      "A Python console tool that zips selected folders and uploads them to the user's own Google Drive. Files stay in the account they already trust, with no third-party cloud in between.",
     stack: ["Python", "Google Drive API"],
-    tags: ["Python", "Automation", "Privacy"],
+    tags: ["Python", "Automation", "Zip", "Backup", "Google Drive API"],
     github: "https://github.com/DortCeL/DriveBackup",
     images: ["/drive_backup.jpg"],
     status: "live",
@@ -158,11 +158,11 @@ export const projects: Project[] = [
   {
     id: "06",
     title: "BFS Visualizer",
-    subtitle: "Pathfinding, made visible",
+    subtitle: "Interactive BFS pathfinding demo",
     description:
-      "Pick a start, an end, draw walls on a grid, and watch BFS find the shortest path — understand algorithms by seeing them.",
+      "A browser grid where you set a start, an end, and walls, then watch BFS find the shortest path step by step. Built in plain HTML, CSS, and JavaScript to make the algorithm easy to follow.",
     stack: ["HTML", "CSS", "JavaScript"],
-    tags: ["Algorithms", "Visual", "Teaching"],
+    tags: ["JavaScript", "Algorithms", "Visualization", "Breadth-First Search"],
     github: "https://github.com/DortCeL/BFS-visualizer",
     live: "https://bfs-visualizer-alif-op.vercel.app",
     images: ["/bfs.png"],
@@ -174,7 +174,7 @@ export const projects: Project[] = [
 
 export const stickers = [
   { id: "s1", label: "Full Stack", emoji: "🛠️", rot: -8, x: 8, y: 18, color: "#facc15" },
-  { id: "s2", label: "Ships Often", emoji: "🚀", rot: 6, x: 72, y: 16, color: "#ffffff" },
+  { id: "s2", label: "Eager Learner", emoji: "🚀", rot: 6, x: 72, y: 16, color: "#ffffff" },
   { id: "s3", label: "CSE Final Year", emoji: "🎓", rot: -4, x: 12, y: 68, color: "#fda4af" },
   { id: "s4", label: "Problem Solver", emoji: "⚡", rot: 10, x: 70, y: 62, color: "#ffffff" },
 ] as const;
