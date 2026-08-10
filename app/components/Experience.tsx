@@ -54,59 +54,56 @@ export function Experience() {
           </div>
 
           {/* LeetCode */}
-          <a
-            href={leetcode.url}
-            target="_blank"
-            rel="noreferrer"
-            className="group border-[3px] border-manga-yellow bg-manga-paper p-6 text-manga-black shadow-[8px_8px_0_#facc15] transition hover:-translate-y-0.5 sm:p-8"
-          >
+          <div className="border-[3px] border-white bg-manga-charcoal p-6 shadow-[8px_8px_0_#facc15] sm:p-8">
             <div className="flex items-center justify-between gap-2">
-              <p className="section-label">// LeetCode</p>
-              <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold tracking-wider text-manga-orange uppercase">
+              <p className="section-label section-label-on-dark">// LeetCode</p>
+              <a
+                href={leetcode.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 border border-manga-yellow bg-manga-yellow/15 px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider text-manga-yellow uppercase transition hover:bg-manga-yellow hover:text-manga-black"
+              >
                 DortCeL
-                <ExternalLink
-                  className="h-3 w-3 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  strokeWidth={2.5}
-                />
-              </span>
+                <ExternalLink className="h-3 w-3" strokeWidth={2.5} />
+              </a>
             </div>
 
             <div className="mt-6 flex items-end gap-3">
-              <span className="text-6xl font-black leading-none text-manga-black italic sm:text-7xl">
+              <span className="text-6xl font-black leading-none text-white italic sm:text-7xl">
                 {leetcode.solved}
               </span>
-              <span className="mb-2 font-mono text-sm font-bold tracking-wide text-manga-black/50 uppercase">
+              <span className="mb-2 font-mono text-sm font-bold tracking-wide text-white/45 uppercase">
                 solved
               </span>
             </div>
 
-            <div className="mt-8 grid grid-cols-3 gap-3 border-t-2 border-manga-black/15 pt-6">
-              <div className="border-2 border-manga-black bg-manga-green/15 px-2 py-3 text-center shadow-[3px_3px_0_#0c0c0d]">
+            <div className="mt-8 grid grid-cols-3 gap-3 border-t-2 border-dashed border-white/20 pt-6">
+              <div className="border-2 border-white/30 bg-manga-green/15 px-2 py-3 text-center">
                 <p className="text-2xl font-black text-manga-green italic">
                   {leetcode.easy}
                 </p>
-                <p className="mt-1 font-mono text-[10px] font-bold tracking-wider uppercase">
+                <p className="mt-1 font-mono text-[10px] font-bold tracking-wider text-white/50 uppercase">
                   Easy
                 </p>
               </div>
-              <div className="border-2 border-manga-black bg-manga-yellow/40 px-2 py-3 text-center shadow-[3px_3px_0_#0c0c0d]">
-                <p className="text-2xl font-black text-manga-orange italic">
+              <div className="border-2 border-white/30 bg-manga-yellow/15 px-2 py-3 text-center">
+                <p className="text-2xl font-black text-manga-yellow italic">
                   {leetcode.medium}
                 </p>
-                <p className="mt-1 font-mono text-[10px] font-bold tracking-wider uppercase">
+                <p className="mt-1 font-mono text-[10px] font-bold tracking-wider text-white/50 uppercase">
                   Med
                 </p>
               </div>
-              <div className="border-2 border-manga-black bg-manga-red/15 px-2 py-3 text-center shadow-[3px_3px_0_#0c0c0d]">
+              <div className="border-2 border-white/30 bg-manga-red/15 px-2 py-3 text-center">
                 <p className="text-2xl font-black text-manga-red italic">
                   {leetcode.hard}
                 </p>
-                <p className="mt-1 font-mono text-[10px] font-bold tracking-wider uppercase">
+                <p className="mt-1 font-mono text-[10px] font-bold tracking-wider text-white/50 uppercase">
                   Hard
                 </p>
               </div>
             </div>
-          </a>
+          </div>
         </div>
 
         {/* Tenure */}
