@@ -267,31 +267,35 @@ function ProjectsCarousel() {
     <div className="mt-10">
       {/* Mobile: one-card carousel (no drag — keeps vertical scroll free) */}
       <div className="md:hidden">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <p className="font-mono text-[10px] font-bold tracking-wider text-manga-orange uppercase">
+        <p className="mb-4 text-center font-mono text-sm font-black tracking-widest text-manga-black uppercase">
+          <span className="border-2 border-manga-black bg-manga-yellow px-3 py-1.5 shadow-[3px_3px_0_#0c0c0d]">
             // Project {active + 1} / {total}
-          </p>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => go(-1)}
-              className="flex h-9 w-9 items-center justify-center border-2 border-manga-black bg-white text-manga-black shadow-[3px_3px_0_#0c0c0d] transition active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_#0c0c0d]"
-              aria-label="Previous project"
-            >
-              <ChevronLeft className="h-5 w-5" strokeWidth={2.5} />
-            </button>
-            <button
-              type="button"
-              onClick={() => go(1)}
-              className="flex h-9 w-9 items-center justify-center border-2 border-manga-black bg-white text-manga-black shadow-[3px_3px_0_#0c0c0d] transition active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_#0c0c0d]"
-              aria-label="Next project"
-            >
-              <ChevronRight className="h-5 w-5" strokeWidth={2.5} />
-            </button>
-          </div>
-        </div>
+          </span>
+        </p>
 
-        <ProjectCard project={projects[active]} />
+        <div className="flex items-center gap-3 pr-2">
+          <button
+            type="button"
+            onClick={() => go(-1)}
+            className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-manga-black bg-manga-black text-white shadow-[3px_3px_0_#e11d48] transition active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_#e11d48]"
+            aria-label="Previous project"
+          >
+            <ChevronLeft className="h-5 w-5" strokeWidth={2.5} />
+          </button>
+
+          <div className="min-w-0 flex-1">
+            <ProjectCard project={projects[active]} />
+          </div>
+
+          <button
+            type="button"
+            onClick={() => go(1)}
+            className="mr-1 flex h-10 w-10 shrink-0 items-center justify-center border-2 border-manga-black bg-manga-black text-white shadow-[3px_3px_0_#e11d48] transition active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_#e11d48]"
+            aria-label="Next project"
+          >
+            <ChevronRight className="h-5 w-5" strokeWidth={2.5} />
+          </button>
+        </div>
 
         <div className="mt-4 flex items-center justify-center gap-2">
           {projects.map((p, i) => (
@@ -310,7 +314,7 @@ function ProjectsCarousel() {
           ))}
         </div>
         <p className="mt-3 text-center font-mono text-[9px] font-bold tracking-wider text-manga-black/45 uppercase">
-          ← use arrows to browse projects →
+          ← use side arrows to browse →
         </p>
       </div>
 
