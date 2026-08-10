@@ -58,9 +58,7 @@ export function About() {
           </p>
 
           <div className="mt-8 space-y-4 text-base leading-relaxed text-manga-black/80 sm:text-lg">
-            <p>
-              Hey, I'm Ismail Hossain. Call me AliF. I live in Mirpur, Dhaka.
-            </p>
+            <p>Hey, I'm Ismail Hossain AliF. I live in Mirpur, Dhaka.</p>
             <p>
               I genuinely just like building things. Doesn't really matter what-
               a script, a small app, whatever. Lately i've been working on my

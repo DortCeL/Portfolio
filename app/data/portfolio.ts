@@ -73,7 +73,9 @@ export type Project = {
   tags: string[];
   github?: string;
   live?: string;
-  status?: "live" | "wip" | "private";
+  status?: string;
+  /** Paths under /public, e.g. "/ss_1.png" */
+  images?: string[];
   accent: string;
   panel: string;
 };
@@ -84,12 +86,13 @@ export const projects: Project[] = [
     title: "Gamebook",
     subtitle: "Social platform for gamers",
     description:
-      "A MERN social network built for gamers — posts, comments, replies, friend management, and real-time chat. Next up: screenshots, reviews, and clip sharing.",
+      "A MERN social network built for gamers : posts, comments, replies, friend management, and real-time chat. Working on : screenshots, reviews, and clip sharing.",
     stack: ["React", "Node.js", "Express", "MongoDB", "JWT"],
-    tags: ["Full Stack", "Realtime", "Social"],
+    tags: ["React", "Node", "MongoDB", "Full Stack", "Websocket", "Social Media"],
     github: "https://github.com/DortCeL/Gamebook",
     live: "https://gamebook-henna.vercel.app",
-    status: "live",
+    status: "IN PROGRESS",
+    images: ["/gamebook.png"],
     accent: "#facc15",
     panel: "#fef3c7",
   },
@@ -102,7 +105,9 @@ export const projects: Project[] = [
     stack: ["Laravel", "React", "TypeScript"],
     tags: ["Laravel", "SPA", "Finance"],
     github: "https://github.com/DortCeL/TripSplit_LaravelReact",
-    status: "wip",
+    live: "https://tripsplit-y7x6.onrender.com/",
+    status: "Complete",
+    images: ["/ss_1.png", "/ss_2.png"],
     accent: "#fb7185",
     panel: "#ffe4e6",
   },
@@ -131,6 +136,7 @@ export const projects: Project[] = [
     github: "https://github.com/DortCeL/ATH_Printing",
     live: "https://ath-printing.vercel.app",
     status: "live",
+    images: ["/ath.png"],
     accent: "#34d399",
     panel: "#d1fae5",
   },
@@ -143,6 +149,7 @@ export const projects: Project[] = [
     stack: ["Python", "Google Drive API"],
     tags: ["Python", "Automation", "Privacy"],
     github: "https://github.com/DortCeL/DriveBackup",
+    images: ["/drive_backup.jpg"],
     status: "live",
     accent: "#38bdf8",
     panel: "#e0f2fe",
@@ -157,6 +164,7 @@ export const projects: Project[] = [
     tags: ["Algorithms", "Visual", "Teaching"],
     github: "https://github.com/DortCeL/BFS-visualizer",
     live: "https://bfs-visualizer-alif-op.vercel.app",
+    images: ["/bfs.png"],
     status: "live",
     accent: "#fb923c",
     panel: "#ffedd5",

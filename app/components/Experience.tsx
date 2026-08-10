@@ -10,7 +10,7 @@ export function Experience() {
       className="halftone-bg relative w-full scroll-mt-24 overflow-hidden bg-manga-black px-4 py-20 sm:px-6 sm:py-28"
     >
       <div className="relative z-[2] mx-auto max-w-5xl">
-        <p className="section-label section-label-on-dark">// Experience</p>
+        {/* <p className="section-label section-label-on-dark">// Experience</p> */}
         <h2 className="comic-title mt-4 text-4xl text-white sm:text-6xl">
           Track Record
         </h2>
@@ -110,6 +110,9 @@ export function Experience() {
         </div>
 
         {/* Tenure */}
+        <p className="section-label section-label-on-dark mt-10 mb-2">
+          // Experience
+        </p>
         <div className="mt-5 grid gap-4 sm:grid-cols-3">
           {tenure.map((item, i) => {
             const accent =
