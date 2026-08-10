@@ -426,14 +426,14 @@
     animation: float-soft 4.5s ease-in-out infinite;
   }
 
-  /* Comic custom cursor — arrow pointer */
+  /* Comic custom cursor — fluffy triangle */
   .comic-cursor-dot {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 9999;
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
     pointer-events: none;
     will-change: transform;
   }
@@ -442,12 +442,40 @@
     display: block;
     filter: drop-shadow(2px 2px 0 #0c0c0d);
     transition: transform 0.15s ease;
-    transform-origin: 2px 2px;
+    transform-origin: 4px 3px;
   }
 
   .comic-cursor-dot.is-hover .comic-cursor-pointer {
-    transform: scale(1.2);
+    transform: scale(1.18);
     filter: drop-shadow(2px 2px 0 #e11d48);
+  }
+
+  .comic-cursor-trail {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .comic-trail-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(22px - var(--trail-i, 0) * 1.1px);
+    height: calc(12px - var(--trail-i, 0) * 0.55px);
+    margin-top: calc((12px - var(--trail-i, 0) * 0.55px) / -2);
+    margin-left: calc((22px - var(--trail-i, 0) * 1.1px) / -2);
+    border-radius: 999px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(12, 12, 13, 0.38) 0%,
+      rgba(12, 12, 13, 0.16) 55%,
+      rgba(12, 12, 13, 0) 100%
+    );
+    opacity: calc(0.75 - var(--trail-i, 0) * 0.04);
+    filter: blur(calc(1.5px + var(--trail-i, 0) * 0.4px));
+    will-change: transform;
   }
 
   .comic-pow-layer {
