@@ -258,6 +258,66 @@
     color: #0c0c0d;
   }
 
+  /* Mobile carousel: lock card height so slides don't jump */
+  @media (max-width: 767px) {
+    .project-card-swipe {
+      height: 36rem;
+    }
+
+    .project-card-swipe .project-card {
+      height: 100%;
+    }
+
+    .project-card-swipe .project-card > div {
+      height: 100%;
+      grid-template-rows: 12.5rem minmax(0, 1fr);
+    }
+
+    .project-card-swipe .halftone-panel {
+      min-height: 12.5rem !important;
+      height: 12.5rem;
+    }
+
+    .project-card-swipe .project-carousel {
+      min-height: 12.5rem !important;
+      height: 12.5rem;
+    }
+
+    .project-card-body {
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .project-card-desc {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      overflow: hidden;
+    }
+  }
+
+  .project-swipe-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .project-swipe-hint-side {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1rem;
+    line-height: 1;
+    color: #fff;
+    background: #0c0c0d;
+    border: 3px solid #0c0c0d;
+    box-shadow: 4px 4px 0 #e11d48;
+  }
+
   .tag-chip {
     display: inline-flex;
     border: 1.5px solid #0c0c0d;

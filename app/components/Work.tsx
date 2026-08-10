@@ -226,19 +226,19 @@ function ProjectCard({
         <ProjectVisual project={project} reverse={reverse} />
 
         <div
-          className={`relative z-[2] flex flex-col p-5 sm:p-7 ${
+          className={`project-card-body relative z-[2] flex flex-col p-5 sm:p-7 ${
             reverse ? "md:order-1" : ""
           }`}
         >
-          <p className="section-label">// {project.subtitle}</p>
-          <h3 className="mt-2 text-2xl font-black tracking-tight text-manga-black italic sm:text-3xl">
+          <p className="section-label shrink-0">// {project.subtitle}</p>
+          <h3 className="mt-2 shrink-0 text-2xl font-black tracking-tight text-manga-black italic sm:text-3xl">
             {project.title}
           </h3>
-          <p className="mt-3 flex-1 text-sm leading-relaxed text-manga-black/75 sm:text-[15px]">
+          <p className="project-card-desc mt-3 flex-1 text-sm leading-relaxed text-manga-black/75 sm:text-[15px]">
             {project.description}
           </p>
 
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-5 flex shrink-0 flex-wrap gap-2">
             {project.tags.map((tag) => (
               <span key={tag} className="tag-chip">
                 {tag}
@@ -246,7 +246,7 @@ function ProjectCard({
             ))}
           </div>
 
-          <div className="mt-5 flex gap-2">
+          <div className="mt-5 flex shrink-0 gap-2">
             <ProjectLinks project={project} />
           </div>
         </div>
@@ -258,6 +258,7 @@ function ProjectCard({
 function ProjectsCarousel() {
   const [active, setActive] = useState(0);
   const total = projects.length;
+  const swipe = useRef<{ x: number; y: number } | null>(null);
 
   const go = (dir: -1 | 1) => {
     setActive((i) => (i + dir + total) % total);
@@ -265,7 +266,7 @@ function ProjectsCarousel() {
 
   return (
     <div className="mt-10">
-      {/* Mobile: one-card carousel (no drag — keeps vertical scroll free) */}
+      {/* Mobile: full-width card carousel */}
       <div className="md:hidden">
         <p className="mb-4 text-center font-mono text-sm font-black tracking-widest text-manga-black uppercase">
           <span className="border-2 border-manga-black bg-manga-yellow px-3 py-1.5 shadow-[3px_3px_0_#0c0c0d]">
@@ -273,49 +274,64 @@ function ProjectsCarousel() {
           </span>
         </p>
 
-        <div className="flex items-center gap-3 pr-2">
+        <div
+          className="project-card-swipe"
+          onPointerDown={(e) => {
+            const t = e.target as Element;
+            if (t.closest("a, button, .project-carousel")) return;
+            swipe.current = { x: e.clientX, y: e.clientY };
+          }}
+          onPointerUp={(e) => {
+            if (!swipe.current) return;
+            const dx = e.clientX - swipe.current.x;
+            const dy = e.clientY - swipe.current.y;
+            swipe.current = null;
+            if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+            go(dx < 0 ? 1 : -1);
+          }}
+          onPointerCancel={() => {
+            swipe.current = null;
+          }}
+        >
+          <ProjectCard project={projects[active]} />
+        </div>
+
+        <div className="project-swipe-hint mt-5">
           <button
             type="button"
             onClick={() => go(-1)}
-            className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-manga-black bg-manga-black text-white shadow-[3px_3px_0_#e11d48] transition active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_#e11d48]"
+            className="project-swipe-hint-side"
             aria-label="Previous project"
           >
-            <ChevronLeft className="h-5 w-5" strokeWidth={2.5} />
+            ◀
           </button>
 
-          <div className="min-w-0 flex-1">
-            <ProjectCard project={projects[active]} />
+          <div className="flex items-center justify-center gap-2 px-2">
+            {projects.map((p, i) => (
+              <button
+                key={p.id}
+                type="button"
+                onClick={() => setActive(i)}
+                aria-label={`Go to ${p.title}`}
+                aria-current={i === active}
+                className={`h-2.5 border-2 border-manga-black transition ${
+                  i === active
+                    ? "w-6 bg-manga-yellow shadow-[2px_2px_0_#0c0c0d]"
+                    : "w-2.5 bg-white"
+                }`}
+              />
+            ))}
           </div>
 
           <button
             type="button"
             onClick={() => go(1)}
-            className="mr-1 flex h-10 w-10 shrink-0 items-center justify-center border-2 border-manga-black bg-manga-black text-white shadow-[3px_3px_0_#e11d48] transition active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_#e11d48]"
+            className="project-swipe-hint-side"
             aria-label="Next project"
           >
-            <ChevronRight className="h-5 w-5" strokeWidth={2.5} />
+            ▶
           </button>
         </div>
-
-        <div className="mt-4 flex items-center justify-center gap-2">
-          {projects.map((p, i) => (
-            <button
-              key={p.id}
-              type="button"
-              onClick={() => setActive(i)}
-              aria-label={`Go to ${p.title}`}
-              aria-current={i === active}
-              className={`h-2.5 border-2 border-manga-black transition ${
-                i === active
-                  ? "w-6 bg-manga-yellow shadow-[2px_2px_0_#0c0c0d]"
-                  : "w-2.5 bg-white"
-              }`}
-            />
-          ))}
-        </div>
-        <p className="mt-3 text-center font-mono text-[9px] font-bold tracking-wider text-manga-black/45 uppercase">
-          ← use side arrows to browse →
-        </p>
       </div>
 
       {/* Desktop: alternating vertical stack */}
