@@ -352,28 +352,6 @@
     animation: project-hint-nudge 1.6s ease-in-out infinite;
   }
 
-  .project-details-toggle {
-    align-self: flex-start;
-    border: 2.5px solid #0c0c0d;
-    background: #0c0c0d;
-    color: #fff;
-    padding: 0.55rem 0.85rem;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    box-shadow: 3px 3px 0 #e11d48;
-  }
-
-  .project-details-toggle--hide {
-    background: #fff;
-    color: #0c0c0d;
-    box-shadow: 3px 3px 0 #0c0c0d;
-    padding: 0.35rem 0.55rem;
-    font-size: 0.6rem;
-  }
-
   @keyframes project-hint-nudge {
     0%,
     100% {
@@ -384,7 +362,7 @@
     }
   }
 
-  /* Desktop: fixed card size; hover only lifts, never resizes */
+  /* Desktop: hover reveals details. Mobile: always show full card. */
   @media (min-width: 768px) {
     .projects-stack .project-card {
       height: 22rem;
@@ -403,7 +381,7 @@
     }
   }
 
-  @media (hover: hover) and (pointer: fine) {
+  @media (hover: hover) and (pointer: fine) and (min-width: 768px) {
     .project-card:hover,
     .project-card:focus-within {
       transform: translate(-3px, -3px);
@@ -425,22 +403,21 @@
     }
   }
 
-  .project-card.is-expanded .project-card-summary {
-    opacity: 0;
-    transform: translateY(-8px);
-    pointer-events: none;
-  }
-
-  .project-card.is-expanded .project-card-full {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  /* Mobile carousel: lock card height so slides don't jump */
+  /* Mobile: always show full details, hide summary layer */
   @media (max-width: 767px) {
+    .project-card-summary {
+      display: none;
+    }
+
+    .project-card-full {
+      position: relative;
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
     .project-card-swipe {
-      height: 34rem;
+      height: 36rem;
     }
 
     .project-card-swipe .project-card {
@@ -464,13 +441,14 @@
 
     .project-card-body {
       min-height: 0;
+      overflow-y: auto;
     }
 
     .project-card-desc {
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 4;
-      line-clamp: 4;
+      -webkit-line-clamp: 5;
+      line-clamp: 5;
       overflow: hidden;
     }
   }

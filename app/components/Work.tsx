@@ -214,12 +214,8 @@ function ProjectCard({
   project: Project;
   reverse?: boolean;
 }) {
-  const [expanded, setExpanded] = useState(false);
-
   return (
-    <article
-      className={`project-card group/card ${expanded ? "is-expanded" : ""}`}
-    >
+    <article className="project-card group/card">
       <div
         className={`project-card-grid ${
           reverse ? "project-card-grid--reverse" : ""
@@ -230,7 +226,7 @@ function ProjectCard({
         <div
           className={`project-card-body ${reverse ? "md:order-1" : ""}`}
         >
-          {/* Collapsed: big title / subtitle / tags */}
+          {/* Collapsed summary — desktop only */}
           <div className="project-card-summary">
             <h3 className="project-card-title">{project.title}</h3>
             <p className="project-card-lede">{project.subtitle}</p>
@@ -242,35 +238,17 @@ function ProjectCard({
               ))}
             </div>
 
-            <div className="mt-auto flex flex-col gap-3 pt-6">
-              <p className="project-hover-hint hidden font-mono text-[10px] font-bold tracking-widest text-manga-orange uppercase md:block">
-                <span className="project-hover-hint-chip project-hover-hint--fine">
-                  ↗ Hover for details
-                </span>
-              </p>
-              <button
-                type="button"
-                className="project-details-toggle md:hidden"
-                onClick={() => setExpanded(true)}
-              >
-                Show details
-              </button>
-            </div>
+            <p className="project-hover-hint mt-auto pt-6 font-mono text-[10px] font-bold tracking-widest text-manga-orange uppercase">
+              <span className="project-hover-hint-chip project-hover-hint--fine">
+                ↗ Hover for details
+              </span>
+            </p>
           </div>
 
-          {/* Expanded: full details, overlaid so size stays fixed */}
+          {/* Full details — always on mobile, hover-reveal on desktop */}
           <div className="project-card-full">
-            <div className="mb-2 flex items-start justify-between gap-2 md:mb-0">
-              <p className="section-label shrink-0">// {project.subtitle}</p>
-              <button
-                type="button"
-                className="project-details-toggle project-details-toggle--hide md:hidden"
-                onClick={() => setExpanded(false)}
-              >
-                Hide details
-              </button>
-            </div>
-            <h3 className="mt-1 shrink-0 text-2xl font-black tracking-tight text-manga-black italic sm:text-3xl md:mt-2">
+            <p className="section-label shrink-0">// {project.subtitle}</p>
+            <h3 className="mt-2 shrink-0 text-2xl font-black tracking-tight text-manga-black italic sm:text-3xl">
               {project.title}
             </h3>
             <p className="project-card-desc mt-3 flex-1 text-sm leading-relaxed text-manga-black/75 sm:text-[15px]">
