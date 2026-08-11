@@ -28,7 +28,7 @@ function ProjectVisual({
 
   return (
     <div
-      className={`halftone-panel relative flex min-h-[200px] items-stretch justify-center border-b-[3px] border-manga-black md:min-h-[260px] md:border-b-0 ${
+      className={`halftone-panel relative flex min-h-[200px] items-stretch justify-center border-b-[3px] border-manga-black md:h-full md:min-h-0 md:border-b-0 ${
         reverse ? "md:order-2 md:border-l-[3px]" : "md:border-r-[3px]"
       }`}
       style={{ backgroundColor: project.panel }}
@@ -36,7 +36,7 @@ function ProjectVisual({
       {hasImages ? (
         <div className="relative flex w-full flex-col">
           <div
-            className="project-carousel relative min-h-[200px] flex-1 overflow-hidden touch-pan-y md:min-h-[260px]"
+            className="project-carousel relative min-h-[200px] flex-1 overflow-hidden touch-pan-y md:min-h-0 md:h-full"
             onPointerDown={(e) => {
               if (!multi) return;
               swipe.current = { x: e.clientX, y: e.clientY };
@@ -214,40 +214,78 @@ function ProjectCard({
   project: Project;
   reverse?: boolean;
 }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <article className="project-card h-full overflow-hidden">
+    <article
+      className={`project-card group/card ${expanded ? "is-expanded" : ""}`}
+    >
       <div
-        className={`grid h-full ${
-          reverse
-            ? "md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]"
-            : "md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
+        className={`project-card-grid ${
+          reverse ? "project-card-grid--reverse" : ""
         }`}
       >
         <ProjectVisual project={project} reverse={reverse} />
 
         <div
-          className={`project-card-body relative z-[2] flex flex-col p-5 sm:p-7 ${
-            reverse ? "md:order-1" : ""
-          }`}
+          className={`project-card-body ${reverse ? "md:order-1" : ""}`}
         >
-          <p className="section-label shrink-0">// {project.subtitle}</p>
-          <h3 className="mt-2 shrink-0 text-2xl font-black tracking-tight text-manga-black italic sm:text-3xl">
-            {project.title}
-          </h3>
-          <p className="project-card-desc mt-3 flex-1 text-sm leading-relaxed text-manga-black/75 sm:text-[15px]">
-            {project.description}
-          </p>
+          {/* Collapsed: big title / subtitle / tags */}
+          <div className="project-card-summary">
+            <h3 className="project-card-title">{project.title}</h3>
+            <p className="project-card-lede">{project.subtitle}</p>
+            <div className="project-card-tags mt-6 flex flex-wrap gap-2.5">
+              {project.tags.map((tag) => (
+                <span key={tag} className="tag-chip tag-chip--lg">
+                  {tag}
+                </span>
+              ))}
+            </div>
 
-          <div className="mt-5 flex shrink-0 flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span key={tag} className="tag-chip">
-                {tag}
-              </span>
-            ))}
+            <div className="mt-auto flex flex-col gap-3 pt-6">
+              <p className="project-hover-hint hidden font-mono text-[10px] font-bold tracking-widest text-manga-orange uppercase md:block">
+                <span className="project-hover-hint-chip project-hover-hint--fine">
+                  ↗ Hover for details
+                </span>
+              </p>
+              <button
+                type="button"
+                className="project-details-toggle md:hidden"
+                onClick={() => setExpanded(true)}
+              >
+                Show details
+              </button>
+            </div>
           </div>
 
-          <div className="mt-5 flex shrink-0 gap-2">
-            <ProjectLinks project={project} />
+          {/* Expanded: full details, overlaid so size stays fixed */}
+          <div className="project-card-full">
+            <div className="mb-2 flex items-start justify-between gap-2 md:mb-0">
+              <p className="section-label shrink-0">// {project.subtitle}</p>
+              <button
+                type="button"
+                className="project-details-toggle project-details-toggle--hide md:hidden"
+                onClick={() => setExpanded(false)}
+              >
+                Hide details
+              </button>
+            </div>
+            <h3 className="mt-1 shrink-0 text-2xl font-black tracking-tight text-manga-black italic sm:text-3xl md:mt-2">
+              {project.title}
+            </h3>
+            <p className="project-card-desc mt-3 flex-1 text-sm leading-relaxed text-manga-black/75 sm:text-[15px]">
+              {project.description}
+            </p>
+            <div className="mt-4 flex shrink-0 flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span key={tag} className="tag-chip">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="project-card-actions mt-5 flex shrink-0 gap-2">
+              <ProjectLinks project={project} />
+            </div>
           </div>
         </div>
       </div>
@@ -335,7 +373,7 @@ function ProjectsCarousel() {
       </div>
 
       {/* Desktop: alternating vertical stack */}
-      <div className="hidden flex-col gap-10 md:flex">
+      <div className="projects-stack hidden flex-col gap-10 md:flex">
         {projects.map((project, i) => (
           <ProjectCard
             key={project.id}
