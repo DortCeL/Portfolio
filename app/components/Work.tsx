@@ -6,7 +6,7 @@ import {
   ExternalLink,
   Lock,
 } from "lucide-react";
-import { projects, type Project } from "../data/portfolio";
+import { projects, tagLabel, tagTone, type Project } from "../data/portfolio";
 
 function ProjectVisual({
   project,
@@ -231,11 +231,17 @@ function ProjectCard({
             <h3 className="project-card-title">{project.title}</h3>
             <p className="project-card-lede">{project.subtitle}</p>
             <div className="project-card-tags mt-6 flex flex-wrap gap-2.5">
-              {project.tags.map((tag) => (
-                <span key={tag} className="tag-chip tag-chip--lg">
-                  {tag}
-                </span>
-              ))}
+              {project.tags.map((tag) => {
+                const tone = tagTone(tag);
+                return (
+                  <span
+                    key={tagLabel(tag)}
+                    className={`tag-chip tag-chip--lg${tone ? ` tag-chip--${tone}` : ""}`}
+                  >
+                    {tagLabel(tag)}
+                  </span>
+                );
+              })}
             </div>
 
             <p className="project-hover-hint mt-auto pt-6 font-mono text-[10px] font-bold tracking-widest text-manga-orange uppercase">
@@ -255,11 +261,17 @@ function ProjectCard({
               {project.description}
             </p>
             <div className="mt-4 flex shrink-0 flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span key={tag} className="tag-chip">
-                  {tag}
-                </span>
-              ))}
+              {project.tags.map((tag) => {
+                const tone = tagTone(tag);
+                return (
+                  <span
+                    key={tagLabel(tag)}
+                    className={`tag-chip${tone ? ` tag-chip--${tone}` : ""}`}
+                  >
+                    {tagLabel(tag)}
+                  </span>
+                );
+              })}
             </div>
             <div className="project-card-actions mt-5 flex shrink-0 gap-2">
               <ProjectLinks project={project} />

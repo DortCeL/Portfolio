@@ -64,13 +64,18 @@ export const profile = {
   ],
 };
 
+export type TagTone = "yellow" | "red" | "blue" | "green" | "orange" | "purple";
+
+export type ProjectTag = string | { label: string; tone: TagTone };
+
 export type Project = {
   id: string;
   title: string;
   subtitle: string;
   description: string;
   stack: string[];
-  tags: string[];
+  /** Plain string = white tag. Object with tone = important colored tag. */
+  tags: ProjectTag[];
   github?: string;
   live?: string;
   status?: string;
@@ -80,6 +85,14 @@ export type Project = {
   panel: string;
 };
 
+export function tagLabel(tag: ProjectTag) {
+  return typeof tag === "string" ? tag : tag.label;
+}
+
+export function tagTone(tag: ProjectTag): TagTone | undefined {
+  return typeof tag === "string" ? undefined : tag.tone;
+}
+
 export const projects: Project[] = [
   {
     id: "01",
@@ -88,7 +101,13 @@ export const projects: Project[] = [
     description:
       "A MERN social platform where gamers can post, comment, manage friends, and chat in real time. Built with JWT auth and MongoDB. Screenshot sharing, reviews, and clip uploads are in progress.",
     stack: ["React", "Node.js", "Express", "MongoDB", "JWT"],
-    tags: ["Full Stack", "React", "Node.js", "MongoDB", "WebSockets"],
+    tags: [
+      { label: "Full Stack", tone: "red" },
+      { label: "React", tone: "blue" },
+      { label: "Node.js", tone: "green" },
+      "MongoDB",
+      "WebSockets",
+    ],
     github: "https://github.com/DortCeL/Gamebook",
     live: "https://gamebook-henna.vercel.app",
     status: "IN PROGRESS",
@@ -103,7 +122,12 @@ export const projects: Project[] = [
     description:
       "A Laravel and React app for shared travel costs. Create a trip, invite members, log expenses, and see clear balances of who owes whom. Built for BDT with roles, settlements, and trip history.",
     stack: ["Laravel", "React", "TypeScript"],
-    tags: ["Laravel", "React", "TypeScript", "Full Stack"],
+    tags: [
+      { label: "Laravel", tone: "red" },
+      { label: "React", tone: "blue" },
+      { label: "Full Stack", tone: "orange" },
+      "TypeScript",
+    ],
     github: "https://github.com/DortCeL/TripSplit_LaravelReact",
     live: "https://tripsplit-y7x6.onrender.com/",
     status: "Complete",
@@ -113,12 +137,17 @@ export const projects: Project[] = [
   },
   {
     id: "03",
-    title: "sketchy?",
+    title: "Sketchy?",
     subtitle: "AI job-posting risk checker",
     description:
       "Paste a job description and Gemini returns a sketchy-or-not verdict, confidence level, a short summary, and any red flags. Built with Next.js to help applicants spot shady listings before they apply.",
     stack: ["Next.js", "TypeScript", "Gemini AI"],
-    tags: ["Next.js", "TypeScript", "Gemini", "AI"],
+    tags: [
+      { label: "Next.js", tone: "blue" },
+      { label: "AI", tone: "purple" },
+      "TypeScript",
+      "Gemini",
+    ],
     github: "https://github.com/DortCeL/sketchy",
     live: "https://sketchy-job.vercel.app/",
     status: "live",
@@ -133,7 +162,11 @@ export const projects: Project[] = [
     description:
       "A marketing site for AutoCAD Training Home, a Dhaka printing and CAD training business. Covers services, location, and company background. Built with React, Tailwind, and Vite for a real local client.",
     stack: ["React", "Tailwind CSS", "Vite"],
-    tags: ["React", "Tailwind", "Client Work"],
+    tags: [
+      { label: "React", tone: "blue" },
+      { label: "Client Work", tone: "green" },
+      "Tailwind",
+    ],
     github: "https://github.com/DortCeL/ATH_Printing",
     live: "https://ath-printing.vercel.app",
     status: "live",
@@ -148,7 +181,13 @@ export const projects: Project[] = [
     description:
       "A Python console tool that zips selected folders and uploads them to the user's own Google Drive. Files stay in the account they already trust, with no third-party cloud in between.",
     stack: ["Python", "Google Drive API"],
-    tags: ["Python", "Automation", "Zip", "Backup", "Google Drive API"],
+    tags: [
+      { label: "Python", tone: "yellow" },
+      { label: "Automation", tone: "orange" },
+      "Zip",
+      "Backup",
+      "Google Drive API",
+    ],
     github: "https://github.com/DortCeL/DriveBackup",
     images: ["/drive_backup.jpg"],
     status: "live",
@@ -162,7 +201,12 @@ export const projects: Project[] = [
     description:
       "A browser grid where you set a start, an end, and walls, then watch BFS find the shortest path step by step. Built in plain HTML, CSS, and JavaScript to make the algorithm easy to follow.",
     stack: ["HTML", "CSS", "JavaScript"],
-    tags: ["JavaScript", "Algorithms", "Visualization", "Breadth-First Search"],
+    tags: [
+      { label: "JavaScript", tone: "yellow" },
+      { label: "Algorithms", tone: "purple" },
+      "Visualization",
+      "Breadth-First Search",
+    ],
     github: "https://github.com/DortCeL/BFS-visualizer",
     live: "https://bfs-visualizer-alif-op.vercel.app",
     images: ["/bfs.png"],
