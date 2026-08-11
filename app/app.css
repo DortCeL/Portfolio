@@ -645,24 +645,50 @@
     overflow: hidden;
   }
 
-  .comic-trail-shadow {
+  .comic-trail-flame {
     position: absolute;
     top: 0;
     left: 0;
-    width: calc(22px - var(--trail-i, 0) * 1.1px);
-    height: calc(12px - var(--trail-i, 0) * 0.55px);
-    margin-top: calc((12px - var(--trail-i, 0) * 0.55px) / -2);
-    margin-left: calc((22px - var(--trail-i, 0) * 1.1px) / -2);
-    border-radius: 999px;
-    background: radial-gradient(
-      ellipse at center,
-      rgba(12, 12, 13, 0.38) 0%,
-      rgba(12, 12, 13, 0.16) 55%,
-      rgba(12, 12, 13, 0) 100%
-    );
-    opacity: calc(0.75 - var(--trail-i, 0) * 0.04);
-    filter: blur(calc(1.5px + var(--trail-i, 0) * 0.4px));
+    width: calc(18px - var(--trail-i, 0) * 0.7px);
+    height: calc(18px - var(--trail-i, 0) * 0.7px);
+    margin-top: calc((18px - var(--trail-i, 0) * 0.7px) / -2);
+    margin-left: calc((18px - var(--trail-i, 0) * 0.7px) / -2);
+    border-radius: 60% 40% 55% 45%;
+    opacity: calc(0.85 - var(--trail-i, 0) * 0.04);
+    filter: blur(calc(0.8px + var(--trail-i, 0) * 0.45px));
     will-change: transform;
+  }
+
+  .comic-trail-flame--0 {
+    background: radial-gradient(
+      circle at 40% 35%,
+      #fff7cc 0%,
+      #facc15 35%,
+      #ea580c 70%,
+      transparent 100%
+    );
+  }
+
+  .comic-trail-flame--1 {
+    background: radial-gradient(
+      circle at 50% 40%,
+      #fde047 0%,
+      #f59e0b 45%,
+      #e11d48 80%,
+      transparent 100%
+    );
+    border-radius: 45% 55% 40% 60%;
+  }
+
+  .comic-trail-flame--2 {
+    background: radial-gradient(
+      circle at 45% 30%,
+      #fef08a 0%,
+      #fb923c 40%,
+      #f97316 75%,
+      transparent 100%
+    );
+    border-radius: 50% 45% 60% 40%;
   }
 
   .comic-pow-layer {

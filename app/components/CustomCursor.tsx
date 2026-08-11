@@ -68,8 +68,8 @@ export function CustomCursor() {
         tip.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       }
 
-      // Base midpoint of the triangle (blunt end), not the tip
-      const base = { x: x + 18, y: y + 26 };
+      // Trail origin sits inside the triangle body (not past the base)
+      const base = { x: x + 15, y: y + 20 };
 
       const vx = x - prevPos.current.x;
       const vy = y - prevPos.current.y;
@@ -109,7 +109,7 @@ export function CustomCursor() {
   useEffect(() => {
     if (!motionOk) return;
 
-    const onPointerDown = (e: PointerEvent) => {
+    const onPointerUp = (e: PointerEvent) => {
       if (e.button !== 0 && e.pointerType === "mouse") return;
 
       const id = ++burstId;
@@ -127,8 +127,8 @@ export function CustomCursor() {
       }, 420);
     };
 
-    window.addEventListener("pointerdown", onPointerDown);
-    return () => window.removeEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointerup", onPointerUp);
+    return () => window.removeEventListener("pointerup", onPointerUp);
   }, [motionOk]);
 
   return (
@@ -142,7 +142,7 @@ export function CustomCursor() {
                 ref={(el) => {
                   trailRefs.current[i] = el;
                 }}
-                className="comic-trail-shadow"
+                className={`comic-trail-flame comic-trail-flame--${i % 3}`}
                 style={{
                   ["--trail-i" as string]: String(i),
                 }}
