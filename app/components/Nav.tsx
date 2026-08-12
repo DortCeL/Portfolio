@@ -118,16 +118,16 @@ function HelloPopover({
 
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p id={titleId} className="font-mono text-[10px] font-bold tracking-widest text-manga-orange uppercase">
-            // Drop me a line
+          <p id={titleId} className="font-mono text-[10px] font-bold tracking-widest text-manga-orange uppercase mt-2">
+            // Drop a line
           </p>
-          <p className="mt-1 text-sm font-black tracking-tight text-manga-black italic">
-            No Outlook. Just type.
+          <p className="mt-1 text-lg font-black tracking-tight text-manga-black italic">
+            Summon the Developer
           </p>
         </div>
         <button
           type="button"
-          className="border-2 border-manga-black bg-white px-2 py-1 font-mono text-[10px] font-black uppercase shadow-[2px_2px_0_#0c0c0d]"
+          className="border-2 border-manga-black bg-white hover:bg-manga-red hover:text-white px-2 py-1 font-mono text-[10px] font-black uppercase shadow-[2px_2px_0_#0c0c0d]"
           onClick={onClose}
           aria-label="Close"
         >
@@ -189,7 +189,7 @@ function HelloPopover({
           <button
             type="submit"
             disabled={status === "sending"}
-            className="hello-send"
+            className="hello-send hover-jitter"
           >
             {status === "sending" ? "Sending..." : "Send message →"}
           </button>
