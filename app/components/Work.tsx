@@ -7,6 +7,7 @@ import {
   Lock,
 } from "lucide-react";
 import { projects, tagLabel, tagTone, type Project } from "../data/portfolio";
+import { Reveal } from "./Reveal";
 
 function ProjectVisual({
   project,
@@ -295,7 +296,7 @@ function ProjectsCarousel() {
   return (
     <div className="mt-10">
       {/* Mobile: full-width card carousel */}
-      <div className="md:hidden">
+      <Reveal variant="up" className="md:hidden">
         <p className="mb-4 text-center font-mono text-sm font-black tracking-widest text-manga-black uppercase">
           <span className="border-2 border-manga-black bg-manga-yellow px-3 py-1.5 shadow-[3px_3px_0_#0c0c0d]">
             // Project {active + 1} / {total}
@@ -360,16 +361,18 @@ function ProjectsCarousel() {
             ▶
           </button>
         </div>
-      </div>
+      </Reveal>
 
       {/* Desktop: alternating vertical stack */}
       <div className="projects-stack hidden flex-col gap-10 md:flex">
         {projects.map((project, i) => (
-          <ProjectCard
+          <Reveal
             key={project.id}
-            project={project}
-            reverse={i % 2 === 1}
-          />
+            variant={i % 2 === 0 ? "left" : "right"}
+            delay={Math.min(i * 70, 280)}
+          >
+            <ProjectCard project={project} reverse={i % 2 === 1} />
+          </Reveal>
         ))}
       </div>
     </div>
@@ -383,10 +386,12 @@ export function Work() {
       className="graph-grid relative w-full scroll-mt-24 bg-manga-paper px-4 py-20 sm:px-6 sm:py-28"
     >
       <div className="relative z-[2] mx-auto max-w-5xl">
-        <h2 className="comic-title text-4xl text-manga-black sm:text-6xl">
-          Projects
-        </h2>
-        <p className="section-label">// Some of the apps i have worked on</p>
+        <Reveal variant="up">
+          <h2 className="comic-title text-4xl text-manga-black sm:text-6xl">
+            Projects
+          </h2>
+          <p className="section-label">// Some of the apps i have worked on</p>
+        </Reveal>
 
         <ProjectsCarousel />
       </div>

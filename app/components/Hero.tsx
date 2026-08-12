@@ -116,7 +116,7 @@ export function Hero() {
         <DraggableStickers />
       </div>
 
-      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
+      <div className="hero-enter relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
         <p className="max-w-md font-mono text-[11px] font-bold tracking-[0.18em] text-manga-orange uppercase sm:text-xs">
           {profile.tagline}
         </p>
@@ -127,14 +127,12 @@ export function Hero() {
               className="absolute inset-0 translate-x-[5px] translate-y-[5px] text-manga-red select-none"
               aria-hidden
             >
-              {/* THIS IS THE SHADOW */}
               HEY, I&apos;M{" "}
               <span className="text-gray-600">
                 {profile.firstName.toUpperCase()}
               </span>
             </span>
             <span className="relative">
-              {/* THIS IS THE ACTUAL TEXT */}
               HEY, I&apos;M{" "}
               <span className="text-manga-red">
                 {profile.firstName.toUpperCase()}
