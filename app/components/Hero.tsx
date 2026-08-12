@@ -19,6 +19,7 @@ function DraggableStickers() {
   const [items, setItems] = useState<StickerState[]>(() =>
     stickerData.map((s) => ({ ...s })),
   );
+  const [draggingId, setDraggingId] = useState<string | null>(null);
   const dragRef = useRef<{
     id: string;
     startX: number;
@@ -32,6 +33,7 @@ function DraggableStickers() {
     const item = items.find((s) => s.id === id);
     if (!item || !areaRef.current) return;
     e.currentTarget.setPointerCapture(e.pointerId);
+    setDraggingId(id);
     dragRef.current = {
       id,
       startX: e.clientX,
@@ -63,6 +65,7 @@ function DraggableStickers() {
 
   const onPointerUp = () => {
     dragRef.current = null;
+    setDraggingId(null);
   };
 
   return (
@@ -74,25 +77,29 @@ function DraggableStickers() {
       <p className="pointer-events-none absolute top-24 left-6 font-mono text-[10px] font-bold tracking-wider text-manga-orange">
         // DRAG AND DROP STICKERS
       </p>
-      {items.map((s) => (
+      {items.map((s, i) => (
         <button
           key={s.id}
           type="button"
-          className="sticker pointer-events-auto absolute inline-flex items-center gap-1.5"
+          className={`sticker pointer-events-auto absolute ${
+            draggingId === s.id ? "is-dragging" : ""
+          }`}
           style={{
             left: `${s.x}%`,
             top: `${s.y}%`,
-            transform: `rotate(${s.rot}deg)`,
-            background: s.color,
             ["--rot" as string]: `${s.rot}deg`,
+            ["--float-delay" as string]: `${i * 0.35}s`,
+            ["--float-dur" as string]: `${3.8 + (i % 3) * 0.55}s`,
           }}
           onPointerDown={(e) => onPointerDown(e, s.id)}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
         >
-          <span aria-hidden>{s.emoji}</span>
-          {s.label}
+          <span className="sticker-float" style={{ background: s.color }}>
+            <span aria-hidden>{s.emoji}</span>
+            {s.label}
+          </span>
         </button>
       ))}
     </div>

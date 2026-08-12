@@ -198,6 +198,16 @@
     user-select: none;
     touch-action: none;
     cursor: grab;
+    border: none;
+    background: transparent;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  .sticker-float {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
     border: 2px solid #0c0c0d;
     background: white;
     box-shadow: 4px 4px 0 #0c0c0d;
@@ -207,13 +217,30 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     padding: 0.55rem 0.75rem;
-    white-space: nowrap;
-    transition: box-shadow 0.15s ease;
+    transform: rotate(var(--rot, 0deg));
+    animation: sticker-float var(--float-dur, 4.2s) ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
   }
 
-  .sticker:active {
+  .sticker.is-dragging {
     cursor: grabbing;
+    z-index: 30;
+  }
+
+  .sticker.is-dragging .sticker-float {
+    animation: none;
     box-shadow: 2px 2px 0 #0c0c0d;
+    transform: rotate(var(--rot, 0deg));
+  }
+
+  @keyframes sticker-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--rot, 0deg));
+    }
+    50% {
+      transform: translateY(-12px) rotate(var(--rot, 0deg));
+    }
   }
 
   .nav-manga {
@@ -758,7 +785,8 @@
     .marquee-track,
     .float-soft,
     .comic-pow,
-    .project-hover-hint--fine {
+    .project-hover-hint--fine,
+    .sticker-float {
       animation: none !important;
     }
 
