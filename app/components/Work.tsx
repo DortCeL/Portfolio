@@ -245,7 +245,7 @@ function ProjectCard({
               })}
             </div>
 
-            <p className="project-hover-hint mt-auto pt-6 font-mono text-[10px] font-bold tracking-widest text-manga-orange uppercase">
+            <p className="project-hover-hint mt-auto pt-6 font-mono text-[10px] font-bold tracking-widest text-manga-black uppercase">
               <span className="project-hover-hint-chip project-hover-hint--fine">
                 ↗ Hover for details
               </span>
@@ -254,28 +254,52 @@ function ProjectCard({
 
           {/* Full details — always on mobile, hover-reveal on desktop */}
           <div className="project-card-full">
-            <p className="section-label shrink-0">// {project.subtitle}</p>
-            <h3 className="mt-2 shrink-0 text-2xl font-black tracking-tight text-manga-black italic sm:text-3xl">
-              {project.title}
-            </h3>
-            <p className="project-card-desc mt-3 flex-1 text-sm leading-relaxed text-manga-black/75 sm:text-[15px]">
-              {project.description}
-            </p>
-            <div className="mt-4 flex shrink-0 flex-wrap gap-2">
-              {project.tags.map((tag) => {
-                const tone = tagTone(tag);
-                return (
-                  <span
-                    key={tagLabel(tag)}
-                    className={`tag-chip${tone ? ` tag-chip--${tone}` : ""}`}
-                  >
-                    {tagLabel(tag)}
-                  </span>
-                );
-              })}
+            {/* Pinned header */}
+            <div className="shrink-0 border-b-2 border-manga-black/10 pb-2.5">
+              <h3 className="text-2xl font-black tracking-tight text-manga-black italic sm:text-3xl">
+                {project.title}
+              </h3>
+              <p className="mt-1 font-mono text-[11px] font-medium tracking-wide text-manga-orange uppercase">
+                {project.subtitle}
+              </p>
             </div>
-            <div className="project-card-actions mt-5 flex shrink-0 gap-2">
-              <ProjectLinks project={project} />
+
+            {/* Mobile: compact paragraph. Desktop: bullet list. */}
+            <p className="project-card-desc project-card-desc--para mt-3 flex-1 text-sm leading-relaxed text-manga-black/75">
+              {project.description.join(" ")}
+            </p>
+            <ul className="project-card-desc project-card-desc--list mt-3 flex-1 space-y-2.5 pr-0.5 text-sm leading-relaxed text-manga-black/75 sm:text-[15px]">
+              {project.description.map((point) => (
+                <li key={point} className="flex items-start gap-2.5">
+                  <span
+                    className="mt-[3px] shrink-0 inline-flex h-[15px] w-[15px] items-center justify-center border-[1.5px] border-manga-black bg-manga-yellow font-mono text-[8px] font-black leading-none"
+                    aria-hidden
+                  >
+                    ▸
+                  </span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Pinned footer */}
+            <div className="mt-2 shrink-0 border-t-2 border-manga-black/10 pt-2.5">
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag) => {
+                  const tone = tagTone(tag);
+                  return (
+                    <span
+                      key={tagLabel(tag)}
+                      className={`tag-chip${tone ? ` tag-chip--${tone}` : ""}`}
+                    >
+                      {tagLabel(tag)}
+                    </span>
+                  );
+                })}
+              </div>
+              <div className="project-card-actions mt-4 flex gap-2">
+                <ProjectLinks project={project} />
+              </div>
             </div>
           </div>
         </div>

@@ -64,6 +64,12 @@ export function Footer() {
               {(
                 [
                   {
+                    label: "Resume",
+                    href: profile.resume,
+                    tone: "bg-manga-yellow text-manga-black hover:bg-white",
+                    download: true,
+                  },
+                  {
                     label: "GitHub",
                     href: profile.github,
                     tone: "bg-manga-black text-white hover:bg-manga-charcoal",
@@ -88,8 +94,9 @@ export function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
+                  {...("download" in link
+                    ? { download: "Ismail_Hossain_Resume.pdf" }
+                    : { target: "_blank", rel: "noreferrer" })}
                   className={`border-2 border-manga-black px-4 py-2 text-[10px] font-black tracking-widest uppercase shadow-[4px_4px_0_#0c0c0d] transition ${link.tone}`}
                 >
                   {link.label}

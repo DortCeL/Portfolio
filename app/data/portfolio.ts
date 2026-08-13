@@ -11,6 +11,7 @@ export const profile = {
   facebook: "https://www.facebook.com/guywitha4060waduheccc/",
   linkedin: "https://www.linkedin.com/in/aleph09/",
   youtube: "https://www.youtube.com/@dortcel5550",
+  resume: "/Ismail_Hossain_Resume.pdf",
   location: "Dhaka, Bangladesh",
   education: {
     degree: "B.Sc. in Computer Science & Engineering",
@@ -72,7 +73,7 @@ export type Project = {
   id: string;
   title: string;
   subtitle: string;
-  description: string;
+  description: string[];
   stack: string[];
   /** Plain string = white tag. Object with tone = important colored tag. */
   tags: ProjectTag[];
@@ -98,8 +99,11 @@ export const projects: Project[] = [
     id: "01",
     title: "Gamebook",
     subtitle: "Full-stack social network for gamers",
-    description:
-      "A MERN social platform where gamers can post, comment, manage friends, and chat in real time. Screenshot sharing & reviews are in progress.",
+    description: [
+      "Used Socket.io so chat works in real time. No polling to see new messages.",
+      "MongoDB isn’t relational, so I handled cascade deletes in the controllers",
+      "Locked down API routes with JWT so only signed-in users can post or chat.",
+    ],
     stack: ["React", "Node.js", "Express", "MongoDB", "JWT"],
     tags: [
       { label: "MERN", tone: "blue" },
@@ -118,8 +122,11 @@ export const projects: Project[] = [
     id: "02",
     title: "TripSplit",
     subtitle: "Group trip expense splitter",
-    description:
-      "A Laravel and React app for shared travel costs. Create a trip, invite members, log expenses, and see clear balances of who owes whom. Built for BDT with roles, settlements, and trip history.",
+    description: [
+      "Built the trip/member/expense relationships with Laravel Eloquent, then wrote a balance algorithm so the app can tell you who owes whom, even in messy group splits.",
+      "Used Laravel Sanctum for API auth so the React frontend can talk to the backend securely without sharing sessions.",
+      "Built a dashboard where each person sees their own balance. No spreadsheet math needed.",
+    ],
     stack: ["Laravel", "React", "TypeScript"],
     tags: [
       { label: "Laravel", tone: "blue" },
@@ -138,8 +145,11 @@ export const projects: Project[] = [
     id: "03",
     title: "Sketchy?",
     subtitle: "AI job-posting risk checker",
-    description:
-      "Paste a job description and Gemini returns a sketchy-or-not verdict, confidence level, a short summary, and any red flags. Built with Next.js to help applicants spot shady listings before they apply.",
+    description: [
+      "Prompted Gemini to score a job listing as sketchy or legit, with a confidence level and some red flags it found.",
+      "Ran those calls through Next.js API routes so the Gemini key stays on the server, never in the browser.",
+      "You can paste a posting and get a quick read before you waste time applying.",
+    ],
     stack: ["Next.js", "TypeScript", "Gemini AI"],
     tags: [
       { label: "Next.js", tone: "blue" },
@@ -158,8 +168,11 @@ export const projects: Project[] = [
     id: "04",
     title: "ATH Printing",
     subtitle: "Business website for a CAD printing shop",
-    description:
-      "A marketing site for AutoCAD Training Home, a Dhaka printing and CAD training business. Covers services, location, and company background. Built with React, Tailwind, and Vite for a real local client.",
+    description: [
+      "Built this for a real printing shop in Dhaka. Showcases their services, locations, machineries and company info",
+      "Used Tailwind so the layout works on phone and desktop without writing a separate stylesheet.",
+      "Vite's hot reload meant the client could see tweaks instantly, which kept revisions short.",
+    ],
     stack: ["React", "Tailwind CSS", "Vite"],
     tags: [
       { label: "React", tone: "blue" },
@@ -177,8 +190,11 @@ export const projects: Project[] = [
     id: "05",
     title: "DriveBackup",
     subtitle: "Automated folder backup to Google Drive",
-    description:
-      "A Python console tool that zips selected folders and uploads them to the user's own Google Drive. Files stay in the account they already trust, with no third-party cloud in between.",
+    description: [
+      "Used Python's zipfile to pack folders before upload so backups don't eat Drive space.",
+      "Pushed the zip to the user's own Google Drive with google-api-python-client + OAuth 2.0 and no third-party cloud in the middle.",
+      "I built this to automatically backup the save-files of my video games without the manual work",
+    ],
     stack: ["Python", "Google Drive API"],
     tags: [
       { label: "Python", tone: "yellow" },
@@ -197,8 +213,11 @@ export const projects: Project[] = [
     id: "06",
     title: "BFS Visualizer",
     subtitle: "Interactive BFS pathfinding demo",
-    description:
-      "A browser grid where you set a start, an end, and walls, then watch BFS find the shortest path step by step. Built in plain HTML, CSS, and JavaScript to make the algorithm easy to follow.",
+    description: [
+      "Wrote BFS in plain JS and used requestAnimationFrame to animate each step so you can actually see how the search spreads.",
+      "You click to place walls, start, and end. Then watch it find the shortest path cell by cell if it exists.",
+      "Used vanilla HTML CSS & Javascript to get a better understanding of how the DOM works.",
+    ],
     stack: ["HTML", "CSS", "JavaScript"],
     tags: [
       { label: "JavaScript", tone: "yellow" },

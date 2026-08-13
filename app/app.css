@@ -431,8 +431,23 @@
     opacity: 0;
     transform: translateY(10px);
     pointer-events: none;
-    overflow-x: hidden;
+    overflow: hidden;
+  }
+
+  .project-card-desc {
+    min-height: 0;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #0c0c0d transparent;
+  }
+
+  .project-card-desc--para {
+    display: none;
+  }
+
+  .project-card-desc--list {
+    display: flex;
+    flex-direction: column;
   }
 
   .project-card-title {
@@ -494,7 +509,7 @@
   /* Desktop: hover reveals details. Mobile: always show full card. */
   @media (min-width: 768px) {
     .projects-stack .project-card {
-      height: 22rem;
+      height: 28rem;
     }
 
     .project-card-grid {
@@ -546,7 +561,7 @@
     }
 
     .project-card-swipe {
-      height: 36rem;
+      height: 34rem;
     }
 
     .project-card-swipe .project-card {
@@ -570,15 +585,34 @@
 
     .project-card-body {
       min-height: 0;
-      overflow-y: auto;
+      overflow: hidden;
     }
 
-    .project-card-desc {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 5;
-      line-clamp: 5;
-      overflow: hidden;
+    .project-card-desc--para {
+      display: block;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: auto;
+      scrollbar-color: var(--color-manga-orange) #f0ede4;
+      padding-right: 0.35rem;
+    }
+
+    .project-card-desc--para::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .project-card-desc--para::-webkit-scrollbar-track {
+      background: #f0ede4;
+      border: 1.5px solid #0c0c0d;
+    }
+
+    .project-card-desc--para::-webkit-scrollbar-thumb {
+      background: var(--color-manga-orange);
+      border: 1.5px solid #0c0c0d;
+    }
+
+    .project-card-desc--list {
+      display: none;
     }
   }
 
