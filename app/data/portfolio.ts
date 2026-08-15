@@ -48,6 +48,7 @@ export const profile = {
     "Tailwind CSS",
     "Unity",
     "C#",
+    "Electron",
     "Git"
   ],
   tools: [
@@ -120,6 +121,27 @@ export const projects: Project[] = [
   },
   {
     id: "02",
+    title: "KI POS",
+    subtitle: "Offline-first desktop POS for a German client",
+    description: [
+      "Built with a team of 5 for a German client: an Electron desktop POS that works offline, so a shop can keep selling without internet.",
+      "Used better-sqlite3 over Node IPC instead of a remote API, so it still runs on cheap hardware (dual-core, ~1GB RAM).",
+      "React + Vite for the cashier UI. Local install, not a web application.",
+    ],
+    stack: ["Electron", "React", "SQLite", "Node.js"],
+    tags: [
+      { label: "Electron", tone: "blue" },
+      { label: "Client Work", tone: "green" },
+      { label: "Team", tone: "orange" },
+      "SQLite",
+    ],
+    github: "https://github.com/arnob-bro/ki-pos-software",
+    status: "Client",
+    accent: "#2dd4bf",
+    panel: "#ccfbf1",
+  },
+  {
+    id: "03",
     title: "TripSplit",
     subtitle: "Group trip expense splitter",
     description: [
@@ -142,7 +164,7 @@ export const projects: Project[] = [
     panel: "#ffe4e6",
   },
   {
-    id: "03",
+    id: "04",
     title: "Sketchy?",
     subtitle: "AI job-posting risk checker",
     description: [
@@ -165,7 +187,7 @@ export const projects: Project[] = [
     panel: "#ede9fe",
   },
   {
-    id: "04",
+    id: "05",
     title: "ATH Printing",
     subtitle: "Business website for a CAD printing shop",
     description: [
@@ -187,7 +209,7 @@ export const projects: Project[] = [
     panel: "#d1fae5",
   },
   {
-    id: "05",
+    id: "06",
     title: "DriveBackup",
     subtitle: "Automated folder backup to Google Drive",
     description: [
@@ -210,7 +232,7 @@ export const projects: Project[] = [
     panel: "#e0f2fe",
   },
   {
-    id: "06",
+    id: "07",
     title: "BFS Visualizer",
     subtitle: "Interactive BFS pathfinding demo",
     description: [
